@@ -1,7 +1,7 @@
 {
-  "name": "skywalker",
+  "name": "@skywalker-fe/skywalker",
   "version": "0.0.1",
-  "description": "skywalker-ui",
+  "description": "Framework Components for Vue js",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
