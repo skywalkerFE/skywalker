@@ -1,5 +1,5 @@
 {
-  "name": "skywalker-ui",
+  "name": "skywalker",
   "version": "0.0.1",
   "description": "skywalker-ui",
   "main": "src/index.js",
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/skywalkerFE/skywalker-ui.git"
   },
   "keywords": [
-    "skywalker-ui"
+    "skywalker"
   ],
   "author": "skywalkerFE",
   "license": "ISC",
