@@ -1,8 +1,10 @@
 import Icon from './src/main.js'
 
 /* istanbul ignore next */
-Icon.install = function(Vue) {
+const install = function (Vue) {
   Vue.component(Icon.name, Icon)
 }
+
+Icon.install = install
 
 export default Icon

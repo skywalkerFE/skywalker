@@ -1,6 +1,6 @@
 {
   "name": "@skywalker-fe/skywalker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Framework Components for Vue js",
   "main": "src/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skywalkerFE/skywalker-ui.git"
+    "url": "git+https://github.com/skywalkerFE/skywalker.git"
   },
   "keywords": [
     "skywalker"
@@ -16,7 +16,7 @@
   "author": "skywalkerFE",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/skywalkerFE/skywalker-ui/issues"
+    "url": "https://github.com/skywalkerFE/skywalker/issues"
   },
-  "homepage": "https://github.com/skywalkerFE/skywalker-ui#readme"
+  "homepage": "https://github.com/skywalkerFE/skywalker#readme"
 }
