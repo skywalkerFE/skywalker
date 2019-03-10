@@ -4,7 +4,7 @@
   "description": "Framework Components for Vue js",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config demo/webpack.demo.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,35 @@
   "bugs": {
     "url": "https://github.com/skywalkerFE/skywalker/issues"
   },
-  "homepage": "https://github.com/skywalkerFE/skywalker#readme"
+  "homepage": "https://github.com/skywalkerFE/skywalker#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-async-to-generator": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/runtime": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "copy-webpack-plugin": "^4.6.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.0",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "material-icons": "^0.3.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "terser": "^3.14.1",
+    "url-loader": "^1.1.2",
+    "vue": "^2.6.8",
+    "vue-loader": "^15.7.0",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.0.2",
+    "vue-template-compiler": "^2.6.8",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.2.1"
+  }
 }
