@@ -73,8 +73,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: './index.html',
       template: path.join(__dirname, 'index.html'),
-
-      // favicon: path.join(__dirname, 'static/img/favicon.ico'),
+      favicon: path.join(__dirname, 'src/static/img/favicon.ico'),
       inject: true
     })
   ]
