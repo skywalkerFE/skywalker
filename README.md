@@ -28,6 +28,8 @@ Vue.component(Icon.name, Icon)
 ```shell
 git clone https://github.com/skywalkerFE/skywalker.git
 
+npm i
+
 npm run dev
 
 # open http://0.0.0.0:8080
