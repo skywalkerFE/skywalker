@@ -6,15 +6,15 @@
 </template>
 
 <script>
-import swIcon from '../../../../components/icon'
+import swIcon from '../../../../packages/icon'
 
 export default {
   data: () => ({}),
+
   components: { swIcon },
   methods: {}
 }
 </script>
 
 <style scoped lang="stylus">
-@import '../../../../src/lib/style/theme.stylus'
 </style>

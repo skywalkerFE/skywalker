@@ -1,4 +1,4 @@
-import Icon from '../components/icon/index.js'
+import Icon from '../packages/icon/index.js'
 
 const components = [
   Icon
@@ -15,7 +15,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.0.1',
   install,
   Icon
 }

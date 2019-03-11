@@ -1,25 +1,34 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const EsmWebpackPlugin = require('@purtuga/esm-webpack-plugin')
+
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: path.join(__dirname, 'src', 'index.js'),
-  output: {
-    filename: 'bundle.js',
-    path: path.join(__dirname, 'dist')
+  entry: {
+    app: [resolve('src/index.js')]
   },
-  devServer: {
-    open: true,
-    historyApiFallback: true,
-    host: '0.0.0.0',
-    port: 8080
+  externals: {
+    vue: {
+      root: 'Vue',
+      commonjs: 'vue',
+      commonjs2: 'vue',
+      amd: 'vue'
+    },
+  },
+  output: {
+    path: resolve('lib'),
+    filename: 'skywalker.esm.js',
+    chunkFilename: '[id].js',
+    library: 'skywalker',
+    libraryTarget: 'var'
   },
   resolve: {
-    alias: {
-      vue$: 'vue/dist/vue.esm.js'
-    }
+    extensions: ['.js', '.vue', '.json']
   },
   module: {
     rules: [
@@ -29,16 +38,23 @@ module.exports = {
       },
       {
         test: /\.styl(us)?$/,
-        use: [
+        use: ExtractTextPlugin.extract({ use: [
           'vue-style-loader',
           'css-loader',
           'stylus-loader'
-        ]
+        ]})
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({ use: [
+          'vue-style-loader',
+          'css-loader'
+        ]})
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: [/node_modules/, path.join(__dirname, 'src/static/lib')],
+        include: [resolve('packages')],
         options: {
           presets: ['@babel/preset-env'],
           plugins: [
@@ -46,13 +62,6 @@ module.exports = {
             ['@babel/plugin-transform-async-to-generator']
           ]
         }
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader'
-        ]
       },
       {
         test: /\.(jpg|jpeg|gif|png|ico)$/,
@@ -64,17 +73,9 @@ module.exports = {
       }
     ]
   },
-  devtool: 'source-map',
   plugins: [
+    new EsmWebpackPlugin(),
     new VueLoaderPlugin(),
-    new CopyWebpackPlugin([
-      { from: path.resolve(__dirname, 'src/static'), to: 'static' }
-    ]),
-    new HtmlWebpackPlugin({
-      filename: './index.html',
-      template: path.join(__dirname, 'index.html'),
-      favicon: path.join(__dirname, 'src/static/img/favicon.ico'),
-      inject: true
-    })
+    new ExtractTextPlugin('[name]/style/index.css')
   ]
 }
