@@ -8,6 +8,9 @@ export default new Router({
     {
       path: '/',
       component: layout,
+      redirect: {
+        name: 'icon'
+      },
       children: [
         {
           path: 'icon',

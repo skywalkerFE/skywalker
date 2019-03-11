@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="sw-flex">
     <sw-icon name="keyboard"></sw-icon>
+    <span>welcome to icon page</span>
   </div>
 </template>
 
@@ -15,4 +16,5 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+@import '../../../../src/lib/style/theme.stylus'
 </style>
