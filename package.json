@@ -2,8 +2,8 @@
   "name": "@skywalker-fe/skywalker",
   "version": "0.0.3",
   "description": "Framework Components for Vue js",
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "packages/index.js",
+  "module": "packages/index.js",
   "scripts": {
     "dist": "node build/component.js > component.json && cross-env NODE_ENV=production webpack --config build/webpack.esm.config.js && cross-env NODE_ENV=production webpack --config build/webpack.component.config.js",
     "docs:dev": "vuepress dev docs",

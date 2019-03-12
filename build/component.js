@@ -10,6 +10,7 @@ const dir = path.join(__dirname, '../packages')
 const files = fs.readdirSync(dir)
 
 files.forEach(file => {
+  if (file === 'directives') { return }
   const absolutePath = path.join(dir, file)
 
   if (isDir(absolutePath)) {

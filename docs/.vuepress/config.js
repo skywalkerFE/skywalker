@@ -17,12 +17,19 @@ module.exports = {
       // 为以下路由添加侧边栏
       sidebar: [
         {
-            title: '基础组件',
-            collapsable: false,
-            children: [
-              'icon'
-            ]
-          }
+          title: '基础组件',
+          collapsable: true,
+          children: [
+            'icon'
+          ]
+        },
+        {
+          title: '自定义指令',
+          collapsable: true,
+          children: [
+            'ripple'
+          ]
+        }
       ]
     }
   }
