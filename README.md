@@ -30,7 +30,7 @@ git clone https://github.com/skywalkerFE/skywalker.git
 
 npm i
 
-npm run dev
+npm run docs:dev
 
 # open http://0.0.0.0:8080
 ```

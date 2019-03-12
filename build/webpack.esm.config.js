@@ -10,7 +10,7 @@ function resolve(dir) {
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: {
-    app: [resolve('src/index.js')]
+    app: [resolve('packages/index.js')]
   },
   externals: {
     vue: {

@@ -1,4 +1,4 @@
-import Icon from '../packages/icon/index.js'
+import Icon from './icon/index.js'
 
 const components = [
   Icon
