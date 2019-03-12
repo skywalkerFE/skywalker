@@ -32,5 +32,5 @@ npm i
 
 npm run docs:dev
 
-# open http://0.0.0.0:8080
+# open http://localhost:8080
 ```
