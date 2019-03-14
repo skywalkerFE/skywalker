@@ -9,7 +9,8 @@
     "component": "node build/component.js > component.json && cross-env NODE_ENV=production webpack --config build/webpack.component.config.js",
     "dist": "npm run style && cross-env NODE_ENV=production webpack --config build/webpack.esm.config.js",
     "docs:dev": "node build/css.js > packages/css/index.styl && vuepress dev docs",
-    "docs:build": "node build/css.js > packages/css/index.styl && vuepress build docs"
+    "docs:build": "node build/css.js > packages/css/index.styl && vuepress build docs",
+    "docs:deploy": "sh deploy.sh"
   },
   "repository": {
     "type": "git",

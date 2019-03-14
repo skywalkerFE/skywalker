@@ -13,6 +13,7 @@ git init
 git add -A
 git commit -m 'deploy'
 
+# 发布到 https://skywalkerFE.github.io/skywalker
 git push -f git@github.com:skywalkerFE/skywalker.git master:gh-pages
 
 cd -
