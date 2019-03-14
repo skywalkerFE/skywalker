@@ -6,15 +6,14 @@ function isDir(dir) {
 }
 
 const json = {}
-const dir = path.join(__dirname, '../packages')
+const dir = path.join(__dirname, '../packages/components')
 const files = fs.readdirSync(dir)
 
 files.forEach(file => {
-  if (file === 'directives' || file === 'utils') { return }
   const absolutePath = path.join(dir, file)
 
   if (isDir(absolutePath)) {
-    json[file] = `./packages/${file}`
+    json[file] = `./packages/components/${file}`
   }
 })
 

@@ -19,7 +19,6 @@ export default {
       }
   
       return {
-        [`${this.color}`]: this.color,
         [cls]: true
       }
     },
@@ -29,8 +28,9 @@ export default {
     },
   
     style() {
-      if (this.size) {
-        return { fontSize: this.size }
+      return {
+        fontSize: this.size || void 0,
+        color: this.color || void 0
       }
     }
   },

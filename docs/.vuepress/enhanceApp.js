@@ -5,7 +5,7 @@ import VueHighlightJS from 'vue-highlight.js'
 import 'vue-highlight.js/lib/allLanguages'
 import 'highlight.js/styles/atom-one-dark.css'
 import 'material-icons/iconfont/material-icons.css'
-import '../../packages/directives/ripple/src/ripple.styl'
+import '../../packages/css/index.styl'
 import skywalker from '../../packages/index'
 
 export default ({

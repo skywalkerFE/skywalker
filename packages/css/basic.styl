@@ -1,0 +1,31 @@
+$primary = #0070d2
+$negative = #bf0201
+$positive = #4bca81
+$warning = #ffb75d
+$grey = #c9c7c5
+
+$common-size = 14px
+$border-radius = 4px
+$min-gutter = 3px
+$middle-gutter = 2 * $min-gutter
+$common-gutter = 2 * $middle-gutter
+$large-gutter = 2 * $common-gutter
+
+body
+    font-family Roboto,-apple-system,Helvetica Neue,Helvetica,Arial,sans-serif
+    -ms-text-size-adjust 100%
+    -webkit-text-size-adjust 100%
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+    font-smoothing antialiased
+    font-size $common-size
+
+.sw-form
+    border-bottom 1px solid $grey
+    &.border
+        border 1px solid $grey
+        border-radius $border-radius
+    &.error
+        border-color $negative
+    &.focus
+        border-color $primary

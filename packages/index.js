@@ -1,8 +1,12 @@
-import Icon from './icon/index.js'
+import Icon from './components/icon/index.js'
+import Field from './components/field/index.js'
+import Input from './components/input/index.js'
 import Ripple from './directives/ripple/index.js'
 
 const components = [
-  Icon
+  Icon,
+  Field,
+  Input
 ]
 
 const directives = [
@@ -15,7 +19,6 @@ const install = function (Vue) {
   })
   directives.forEach(directive => {
     Vue.directive(directive.name, directive)
-    console.log(directive)
   })
 }
 
@@ -26,5 +29,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   Icon,
+  Field,
+  Input,
   Ripple
 }

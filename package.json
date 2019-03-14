@@ -5,9 +5,9 @@
   "main": "packages/index.js",
   "module": "packages/index.js",
   "scripts": {
-    "dist": "node build/component.js > component.json && cross-env NODE_ENV=production webpack --config build/webpack.esm.config.js && cross-env NODE_ENV=production webpack --config build/webpack.component.config.js",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "dist": "node build/css.js > packages/css/index.styl && node build/component.js > component.json && cross-env NODE_ENV=production webpack --config build/webpack.esm.config.js && cross-env NODE_ENV=production webpack --config build/webpack.component.config.js",
+    "docs:dev": "node build/css.js > packages/css/index.styl && vuepress dev docs",
+    "docs:build": "node build/css.js > packages/css/index.styl && vuepress build docs"
   },
   "repository": {
     "type": "git",
