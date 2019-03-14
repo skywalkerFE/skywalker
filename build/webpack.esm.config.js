@@ -1,6 +1,5 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const EsmWebpackPlugin = require('@purtuga/esm-webpack-plugin')
 
 function resolve(dir) {
@@ -38,18 +37,18 @@ module.exports = {
       },
       {
         test: /\.styl(us)?$/,
-        use: ExtractTextPlugin.extract({ use: [
+        use: [
           'vue-style-loader',
           'css-loader',
           'stylus-loader'
-        ]})
+        ]
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({ use: [
+        use: [
           'vue-style-loader',
           'css-loader'
-        ]})
+        ]
       },
       {
         test: /\.js$/,
@@ -75,7 +74,6 @@ module.exports = {
   },
   plugins: [
     new EsmWebpackPlugin(),
-    new VueLoaderPlugin(),
-    new ExtractTextPlugin('[name]/style/index.css')
+    new VueLoaderPlugin()
   ]
 }
