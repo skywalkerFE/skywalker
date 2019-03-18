@@ -68,6 +68,10 @@ export default {
       <sw-icon slot="before" name="alarm"></sw-icon>
       <div slot="after">一些文本</div>
     </sw-input>
+    <sw-input label="label" required bordered disabled :rules="rules" v-model="val9">
+      <sw-icon slot="before" name="alarm"></sw-icon>
+      <div slot="after">一些文本</div>
+    </sw-input>
 ```
 
 ``` js
@@ -94,5 +98,5 @@ rules|Array\<Function\>|false||
 
 Name|Required|direction|
 :------:|:------:|:------:|
-before|false|置于input左侧的插槽,color默认置灰|
-after|false|置于input右侧的插槽,color默认置灰|
+before|false|置于input左侧的插槽|
+after|false|置于input右侧的插槽|

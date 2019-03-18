@@ -13,9 +13,13 @@ export default {
         this.excludedBlurRefs.some(ref => {
           if (this.$refs[ref] === void 0) { return false }
           excluded = this.$refs[ref].contains(e.target) || false
+          return excluded
         })
       }
-      if (excluded) { return }
+      if (excluded) {
+        this.focused = true
+        return
+      }
       let focusedBefore = this.focused
 
       if (this.blurType === 'reverse' && focusedBefore) {

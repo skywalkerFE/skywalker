@@ -33,18 +33,10 @@ export default {
 
 ### 参数
 
-Name|Type|Required|Default|
-:------:|:------:|:------:|:------:|
-v-model|String|true||
-label|String|false||
-required|Boolean|false|false|
-bordered|Boolean|false|false|
-disabled|Boolean|false|false|
-rules|Array\<Function\>|false||
-
 ### 插槽
 
 Name|Required|direction|
 :------:|:------:|:------:|
-before|false|置于input左侧的插槽,color默认置灰|
-after|false|置于input右侧的插槽,color默认置灰|
+before|false|置于default左侧的插槽|
+after|false|置于default右侧的插槽|
+default|false|置于中间的插槽|

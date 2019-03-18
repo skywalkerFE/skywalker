@@ -31,6 +31,7 @@ export default {
           staticClass: 'sw-item__before flex items-center',
           class: {
             hide: this.hideBefore,
+            'flex-auto': this.hideDefault,
             'no-wrap': !this.wrap
           }
         }, this.$scopedSlots.before()) : void 0,

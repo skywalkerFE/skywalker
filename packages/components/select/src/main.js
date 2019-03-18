@@ -23,10 +23,12 @@ export default {
   },
   data: () => ({
     blurType: 'reverse',
-    filterValue: '',
-    excludedBlurRefs: ['selectOptions']
+    filterValue: ''
   }),
   computed: {
+    excludedBlurRefs() {
+      return this.filter ? ['input', 'selectOptions'] : ['selectOptions']
+    },
     innerValue: {
       get() {
         let value = this.findOptions(deduplicate(this.value))
@@ -56,7 +58,9 @@ export default {
   },
   methods: {
     focus() {
-      this.$refs.input.focus()
+      this.$nextTick(() => {
+        this.$refs.input.focus()
+      })
     },
     blur() {
       this.$refs.input.blur()
@@ -76,7 +80,7 @@ export default {
             scopedSlots: {
               default: () => h('div', {
                 staticClass: 'sw-select__option'
-              }, this.getName(option))
+              }, String(this.getName(option)))
             }
           }))
         } else {
@@ -99,7 +103,11 @@ export default {
             filled: this.selectedFilled
           },
           scopedSlots: {
-            default: () => String(this.getName(x)),
+            default: () => h('div',{
+              style:{
+                'padding':'0 3px'
+              }
+            },String(this.getName(x))),
             after: () => h('sw-icon', {
               class: {
                 'hover-color-primary': true,
@@ -109,8 +117,8 @@ export default {
                 'border-radius': '50%'
               },
               props: {
-                name: 'cancel',
-                size: '20px'
+                name: this.selectedFilled ? 'cancel' : 'clear',
+                size: '15px'
               },
               nativeOn: {
                 click: () => {
@@ -122,15 +130,19 @@ export default {
         }))
 
       return [h('sw-item', {
+        staticClass: 'flex-auto',
         props: {
           wrap: true,
-          hideDefault: this.innerValue.length > 0 && !this.focused
+          hideDefault: this.innerValue.length > 0 && (!this.focused || !this.filter)
         },
         scopedSlots: {
           before: this.innerValue.length > 0 ? () => getSelected(h) : void 0,
           default: () => h('input', {
             ref: 'input',
             staticClass: 'sw-input margin-min',
+            class: {
+              'hover-highlight': this.filter
+            },
             style: {
               cursor: !this.filter ? 'pointer' : void 0
             },
@@ -150,7 +162,8 @@ export default {
             props: {
               name: this.focused ? 'keyboard_arrow_up' : 'keyboard_arrow_down',
               size: '20px'
-            }
+            },
+            staticClass: 'color-grey hover-color-primary'
           })
         }
       }), this.focused ? h('div', {
