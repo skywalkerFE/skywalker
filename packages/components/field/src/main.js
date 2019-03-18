@@ -1,8 +1,11 @@
 import ValidateMixin from '../../../mixins/validate'
+import AdvancedBlurMixin from '../../../mixins/advancedBlur'
+import Item from '../../item'
 
 export default {
   name: 'swField',
-  mixins: [ValidateMixin], // hasError,computedErrorMessage
+  mixins: [ValidateMixin, AdvancedBlurMixin], // hasError,computedErrorMessage
+  components: { Item },
   props: {
     required: Boolean,
     bordered: Boolean,
@@ -10,11 +13,21 @@ export default {
     label: String
   },
   data: () => ({
-    focused: false
+    focused: false,
+    blurRefs: ['fieldContent']
   }),
+  watch: {
+    focused() {
+      if (this.focused && this.focus) { this.focus() }
+      if (!this.focused && this.blur) { this.blur() }
+    }
+  },
   render(h) {
     return h('div', {
-      staticClass: 'sw-field flex no-wrap items-center'
+      staticClass: 'sw-field flex no-wrap items-center',
+      class: {
+        disable: this.disabled
+      }
     }, [
       this.label !== void 0 ? h('div', {
         staticClass: 'sw-field__label flex no-wrap items-center'
@@ -24,37 +37,43 @@ export default {
         }, this.label),
         this.required ? h('div', {
           staticClass: 'sw-required flex no-wrap items-center'
-        }, '*') : null
-      ]) : null,
+        }, '*') : void 0
+      ]) : void 0,
 
       h('div', {
+        ref: 'fieldContent',
         staticClass: 'sw-field__content flex no-wrap items-center sw-form',
         class: {
           border: this.bordered,
           focus: !this.hasError && this.focused,
           error: this.hasError
-        },
-        on: {
-          click: () => {
-            if (this.focus) { this.focus() }
-          }
         }
       }, [
-        this.$scopedSlots.before !== void 0 ? h('div', {
-          staticClass: 'sw-field__before flex no-wrap items-center'
-        }, this.$scopedSlots.before()) : null,
-  
-        this.getInner !== void 0 ? h('div', {
-          staticClass: 'sw-field__inner flex no-wrap items-center'
-        }, [this.getInner(h)]) : null,
-  
-        this.$scopedSlots.after !== void 0 ? h('div', {
-          staticClass: 'sw-field__after flex no-wrap items-center'
-        }, this.$scopedSlots.after()) : null,
+        this.disabled ? h('div', {
+          staticClass: 'sw-field__disabled'
+        }) : void 0,
+
+        h('sw-item', {
+          staticClass: 'flex-auto',
+          scopedSlots: {
+            before: this.$scopedSlots.before !== void 0
+              ? () => h('div', {
+                staticClass: 'flex no-wrap items-center margin-min'
+              }, this.$scopedSlots.before()) : void 0,
+
+            default: this.getInner !== void 0
+              ? () => this.getInner(h) : void 0,
+
+            after: this.$scopedSlots.after !== void 0
+              ? () => h('div', {
+                staticClass: 'flex no-wrap items-center margin-min'
+              }, this.$scopedSlots.after()) : void 0
+          }
+        }),
 
         this.hasError ? h('div', {
           staticClass: 'sw-field__error flex no-wrap items-center'
-        }, this.computedErrorMessage) : null
+        }, this.computedErrorMessage) : void 0
       ])
     ])
   }

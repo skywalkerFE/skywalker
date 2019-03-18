@@ -3,13 +3,37 @@ $negative = #bf0201
 $positive = #4bca81
 $warning = #ffb75d
 $grey = #c9c7c5
+$light-grey = rgba(0,0,0,.05)
 
 $common-size = 14px
 $border-radius = 4px
 $min-gutter = 3px
-$middle-gutter = 2 * $min-gutter
-$common-gutter = 2 * $middle-gutter
+$medium-gutter = 2 * $min-gutter
+$common-gutter = 2 * $medium-gutter
 $large-gutter = 2 * $common-gutter
+
+.hide
+    display none !important
+
+.padding
+    &-min
+        padding $min-gutter
+    &-medium
+        padding $medium-gutter
+    &-common
+        padding $common-gutter
+    &-large
+        padding $large-gutter
+
+.margin
+    &-min
+        margin $min-gutter
+    &-medium
+        margin $medium-gutter
+    &-common
+        margin $common-gutter
+    &-large
+        margin $large-gutter
 
 body
     font-family Roboto,-apple-system,Helvetica Neue,Helvetica,Arial,sans-serif
@@ -20,12 +44,74 @@ body
     font-smoothing antialiased
     font-size $common-size
 
+.color-primary
+    color $primary
+.color-negative
+    color $negative
+.color-positive
+    color $positive
+.color-warning
+    color $warning
+.color-grey
+    color $grey
+.color-light-grey
+    color $light-grey
+
+.bg-primary
+    background-color $primary
+.bg-negative
+    background-color $negative
+.bg-positive
+    background-color $positive
+.bg-warning
+    background-color $warning
+.bg-grey
+    background-color $grey
+.bg-light-grey
+    background-color $light-grey
+
+.hover-color-primary:hover
+    color $primary
+.hover-color-negative:hover
+    color $negative
+.hover-color-positive:hover
+    color $positive
+.hover-color-warning:hover
+    color $warning
+.hover-color-grey:hover
+    color $grey
+.hover-color-light-grey:hover
+    color $light-grey
+
+.hover-bg-primary:hover
+    background-color $primary
+.hover-bg-negative:hover
+    background-color $negative
+.hover-bg-positive:hover
+    background-color $positive
+.hover-bg-warning:hover
+    background-color $warning
+.hover-bg-grey:hover
+    background-color $grey
+.hover-bg-light-grey:hover
+    background-color $light-grey
+
 .sw-form
+    padding-top 1px
     border-bottom 1px solid $grey
     &.border
+        padding-top 0
         border 1px solid $grey
         border-radius $border-radius
+    &.fill
+        padding-top 0
+        border 1px solid $light-grey
+        border-radius $border-radius
+        background-color $light-grey  
     &.error
         border-color $negative
     &.focus
         border-color $primary
+
+.common-shadow
+    box-shadow 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12)

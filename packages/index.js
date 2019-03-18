@@ -1,12 +1,18 @@
 import Icon from './components/icon/index.js'
+import Item from './components/item/index.js'
 import Field from './components/field/index.js'
 import Input from './components/input/index.js'
+import Select from './components/select/index.js'
+import ScrollArea from './components/scrollArea/index.js'
 import Ripple from './directives/ripple/index.js'
 
 const components = [
   Icon,
+  Item,
   Field,
-  Input
+  Input,
+  Select,
+  ScrollArea
 ]
 
 const directives = [
@@ -29,7 +35,10 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   Icon,
+  Item,
   Field,
   Input,
+  Select,
+  ScrollArea,
   Ripple
 }

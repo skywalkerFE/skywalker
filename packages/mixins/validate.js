@@ -1,3 +1,4 @@
+
 export default {
   props: {
     errorMessage: String,
@@ -34,11 +35,11 @@ export default {
   },
 
   mounted() {
-    this.$on('blur', this.triggerValidation)
+    this.$on(`blur`, this.triggerValidation)
   },
 
   beforeDestroy() {
-    this.$off('blur', this.triggerValidation)
+    this.$off(`blur`, this.triggerValidation)
   },
 
   methods: {

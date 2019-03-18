@@ -1,0 +1,28 @@
+.sw-select__options
+    position absolute
+    bottom 0
+    left 0
+    min-width 100%
+    background #fff
+    transform translate(0, calc(100% + 7px))
+    z-index 9
+    .sw-item
+        &:hover
+            background $light-grey
+            cursor pointer
+        &.selected
+            color $primary
+    .sw-select__option
+        border none
+        padding $medium-gutter
+        height $large-gutter
+        line-height $large-gutter
+        font-size $common-size
+        outline none
+        width 100%
+        min-width 100px
+        background transparent
+        cursor pointer
+        &.no-options
+            color $grey
+            cursor default

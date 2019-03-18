@@ -1,5 +1,10 @@
 .sw-field
     padding $common-gutter
+    &.disable
+        .sw-field__label
+            color $grey
+        .sw-field__content
+            background $light-grey
     .sw-field__label
         position relative
         margin-right $large-gutter
@@ -13,20 +18,23 @@
         padding $min-gutter
         background #fff
         flex auto
-        .sw-field__inner
-            flex auto
+        .sw-field__disabled
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
+            z-index 9
+            background transparent
         .sw-field__before, .sw-field__after
             color $grey
-    .sw-field__before, .sw-field__inner, .sw-field__after
-        padding $min-gutter
-        height $large-gutter
     .sw-field__error
         position absolute
         right 0
         padding 0 $common-gutter
         transform translate(calc(100% + 18px))
         border-radius $border-radius
-        box-shadow -1px 1px 2px rgba(0,0,0,0.2), 0px 0px 4px rgba(0,0,0,0.2)
+        box-shadow 0px 1px 1px rgba(0,0,0,0.2), 0px 0px 4px rgba(0,0,0,0.2)
         height 100%
         background #fff
         color $negative
@@ -40,3 +48,16 @@
             box-shadow: -1px 1px 1px 0px rgba(0,0,0,0.2)
             content: ""
             transform rotate(45deg)
+    &:not(.disable)
+        .sw-form
+            &:hover:not(.error)
+                border-color $primary !important
+                cursor pointer
+            &.fill:hover
+                background-color $primary !important
+                color #fff
+                .sw-icon
+                    color inherit !important
+                    opacity .6
+                    &:hover
+                        opacity 1

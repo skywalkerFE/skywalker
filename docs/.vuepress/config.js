@@ -22,7 +22,9 @@ module.exports = {
           collapsable: true,
           children: [
             'icon',
-            'input'
+            'item',
+            'input',
+            'select'
           ]
         },
         {

@@ -2,10 +2,10 @@ import Field from '../../field'
 
 export default {
   name: 'swInput',
-  mixins: [Field], // focused
+  mixins: [Field], // focused,disabled
   props: {
     value: String,
-    validation: Object
+    placeholder: String
   },
   data: () => ({}),
   computed: {},
@@ -17,30 +17,18 @@ export default {
       this.$refs.input.blur()
     },
     getInner(h) {
-      let self = this
-  
       return h('input', {
         ref: 'input',
-        staticClass: 'sw-input',
+        staticClass: 'sw-input margin-min',
         domProps: {
-          value: self.value
+          value: this.value,
+          placeholder: this.placeholder,
+          disabled: this.disabled
         },
         on: {
           ...this.$listeners,
-          focus: e => {
-            if (this.disabled === false && this.focused === false) {
-              this.focused = true
-            }
-            this.$emit('focus', e)
-          },
-          blur: e => {
-            if (this.focused === true) {
-              this.focused = false
-            }
-            this.$emit('blur', e)
-          },
           input: e => {
-            self.$emit('input', e.target.value)
+            this.$emit('input', e.target.value)
           }
         }
       })
