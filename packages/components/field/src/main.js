@@ -64,10 +64,10 @@ export default {
             default: this.getInner !== void 0
               ? () => this.getInner(h) : void 0,
 
-            after: this.$scopedSlots.after !== void 0
+            after: this.$scopedSlots.after !== void 0 || this.getAfter !== void 0
               ? () => h('div', {
                 staticClass: 'flex no-wrap items-center margin-min'
-              }, this.$scopedSlots.after()) : void 0
+              }, [this.getAfter !== void 0 ? this.getAfter(h) : void 0, this.$scopedSlots.after !== void 0 ? this.$scopedSlots.after() : void 0]) : void 0
           }
         }),
 

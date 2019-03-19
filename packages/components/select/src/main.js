@@ -103,11 +103,11 @@ export default {
             filled: this.selectedFilled
           },
           scopedSlots: {
-            default: () => h('div',{
-              style:{
-                'padding':'0 3px'
+            default: () => h('div', {
+              style: {
+                padding: '0 3px'
               }
-            },String(this.getName(x))),
+            }, String(this.getName(x))),
             after: () => h('sw-icon', {
               class: {
                 'hover-color-primary': true,
@@ -157,13 +157,6 @@ export default {
                 this.filterValue = e.target.value
               }
             }
-          }),
-          after: () => h('sw-icon', {
-            props: {
-              name: this.focused ? 'keyboard_arrow_up' : 'keyboard_arrow_down',
-              size: '20px'
-            },
-            staticClass: 'color-grey hover-color-primary'
           })
         }
       }), this.focused ? h('div', {
@@ -183,6 +176,15 @@ export default {
           }
         })
       ]) : void 0]
+    },
+    getAfter(h) {
+      return h('sw-icon', {
+        props: {
+          name: this.focused ? 'keyboard_arrow_up' : 'keyboard_arrow_down',
+          size: '20px'
+        },
+        staticClass: 'color-grey hover-color-primary'
+      })
     },
     formatValue(option, ope) {
       let duplicated = false
