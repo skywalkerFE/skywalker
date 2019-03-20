@@ -27,7 +27,7 @@ export default {
   }),
   computed: {
     excludedBlurRefs() {
-      return this.filter ? ['input', 'selectOptions'] : ['selectOptions']
+      return this.filter ? ['input', 'selected', 'selectOptions'] : ['selected', 'selectOptions']
     },
     innerValue: {
       get() {
@@ -78,56 +78,57 @@ export default {
               }
             },
             scopedSlots: {
-              default: () => h('div', {
+              default: () => [h('div', {
                 staticClass: 'sw-select__option'
-              }, String(this.getName(option)))
+              }, String(this.getName(option)))]
             }
           }))
         } else {
-          return h('sw-item', {
+          return [h('sw-item', {
             scopedSlots: {
-              default: () => h('div', {
+              default: () => [h('div', {
                 staticClass: 'sw-select__option no-options'
-              }, '无结果')
+              }, 'no options')]
             }
-          })
+          })]
         }
       }
 
-      let getSelected = h => this.innerValue.map(x =>
-        h('sw-item', {
-          staticClass: 'margin-min',
-          props: {
-            formStyle: true,
-            bordered: this.bordered,
-            filled: this.selectedFilled
-          },
-          scopedSlots: {
-            default: () => h('div', {
-              style: {
-                padding: '0 3px'
+      let getSelected = h => this.innerValue.map(x => h('sw-item', {
+        staticClass: 'margin-min',
+        ref: 'selected',
+        refInFor: true,
+        props: {
+          formStyle: true,
+          bordered: this.bordered,
+          filled: this.selectedFilled
+        },
+        scopedSlots: {
+          default: () => [h('div', {
+            style: {
+              padding: '0 3px'
+            }
+          }, String(this.getName(x)))],
+          after: () => [h('sw-icon', {
+            class: {
+              'hover-color-primary': true,
+              'color-grey': true
+            },
+            style: {
+              'border-radius': '50%'
+            },
+            props: {
+              name: this.selectedFilled ? 'cancel' : 'clear',
+              size: '15px'
+            },
+            nativeOn: {
+              click: () => {
+                this.innerValue = this.formatValue(x, 'remove')
               }
-            }, String(this.getName(x))),
-            after: () => h('sw-icon', {
-              class: {
-                'hover-color-primary': true,
-                'color-grey': true
-              },
-              style: {
-                'border-radius': '50%'
-              },
-              props: {
-                name: this.selectedFilled ? 'cancel' : 'clear',
-                size: '15px'
-              },
-              nativeOn: {
-                click: () => {
-                  this.innerValue = this.formatValue(x, 'remove')
-                }
-              }
-            })
-          }
-        }))
+            }
+          })]
+        }
+      }))
 
       return [h('sw-item', {
         staticClass: 'flex-auto',
@@ -137,18 +138,15 @@ export default {
         },
         scopedSlots: {
           before: this.innerValue.length > 0 ? () => getSelected(h) : void 0,
-          default: () => h('input', {
+          default: () => [h('input', {
             ref: 'input',
             staticClass: 'sw-input margin-min',
-            class: {
-              'hover-highlight': this.filter
-            },
             style: {
               cursor: !this.filter ? 'pointer' : void 0
             },
             domProps: {
               value: this.filterValue,
-              placeholder: this.placeholder,
+              placeholder: this.placeholder || '',
               disabled: !this.filter
             },
             on: {
@@ -157,7 +155,7 @@ export default {
                 this.filterValue = e.target.value
               }
             }
-          })
+          })]
         }
       }), this.focused ? h('div', {
         ref: 'selectOptions',
@@ -165,26 +163,25 @@ export default {
         style: {
           'max-height': this.optionsHeight
         }
-      }, [
-        h('sw-scroll-area', {
-          props: {
-            y: true,
-            height: this.optionsHeight
-          },
-          scopedSlots: {
-            default: () => getOptions(h)
-          }
-        })
+      }, [h('sw-scroll-area', {
+        props: {
+          y: true,
+          height: this.optionsHeight
+        },
+        scopedSlots: {
+          default: () => getOptions(h)
+        }
+      })
       ]) : void 0]
     },
     getAfter(h) {
-      return h('sw-icon', {
+      return [h('sw-icon', {
         props: {
           name: this.focused ? 'keyboard_arrow_up' : 'keyboard_arrow_down',
           size: '20px'
         },
         staticClass: 'color-grey hover-color-primary'
-      })
+      })]
     },
     formatValue(option, ope) {
       let duplicated = false

@@ -217,6 +217,9 @@ body {
 .sw-field.disable .sw-field__label {
   color: #c9c7c5;
 }
+.sw-field.disable .sw-field__label .sw-label {
+  white-space: nowrap;
+}
 .sw-field.disable .sw-field__content {
   background: rgba(0,0,0,0.05);
 }
@@ -275,9 +278,6 @@ body {
   border-color: #0070d2 !important;
   cursor: pointer;
 }
-.sw-field:not(.disable) .sw-form:hover .sw-input.hover-highlight {
-  border-bottom: 1px solid #0070d2 !important;
-}
 .sw-field:not(.disable) .sw-form.fill:hover {
   background-color: #0070d2 !important;
   color: #fff;
@@ -298,13 +298,11 @@ body {
   line-height: 24px;
   font-size: 14px;
   outline: none;
+  border: none;
   width: 100%;
   min-width: 100px;
   background: transparent;
   box-sizing: border-box;
-}
-.sw-input:not(.sw-form) {
-  border: none;
 }
 .sw-item .sw-item__content {
   position: relative;
@@ -338,6 +336,7 @@ body {
   color: #0070d2;
 }
 .sw-select__options .sw-select__option {
+  box-sizing: content-box;
   padding: 6px;
   height: 24px;
   line-height: 24px;

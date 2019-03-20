@@ -23,7 +23,7 @@ export default {
       staticClass: 'sw-scroll-area',
       style: this.style,
       on: this.$listeners
-    }, this.$scopedSlots.default !== void 0 ? this.$scopedSlots.default() : void 0)
+    }, this.$scopedSlots.default !== void 0 ? [this.$scopedSlots.default()] : void 0)
   }
 }
   

@@ -34,7 +34,7 @@ export default {
             'flex-auto': this.hideDefault,
             'no-wrap': !this.wrap
           }
-        }, this.$scopedSlots.before()) : void 0,
+        }, [this.$scopedSlots.before()]) : void 0,
   
         this.$scopedSlots.default !== void 0 ? h('div', {
           staticClass: 'sw-item__inner flex items-center',
@@ -42,7 +42,7 @@ export default {
             hide: this.hideDefault,
             'no-wrap': !this.wrap
           }
-        }, this.$scopedSlots.default()) : void 0,
+        }, [this.$scopedSlots.default()]) : void 0,
   
         this.$scopedSlots.after !== void 0 ? h('div', {
           staticClass: 'sw-item__after flex items-center',
@@ -50,7 +50,7 @@ export default {
             hide: this.hideAfter,
             'no-wrap': !this.wrap
           }
-        }, this.$scopedSlots.after()) : void 0
+        }, [this.$scopedSlots.after()]) : void 0
       ])
     ])
   }
