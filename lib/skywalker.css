@@ -214,6 +214,9 @@ body {
 .sw-field {
   padding: 12px;
 }
+.sw-field .sw-field__label .sw-label {
+  white-space: nowrap;
+}
 .sw-field.disable .sw-field__label {
   color: #c9c7c5;
 }
@@ -315,6 +318,137 @@ body {
 .sw-item .sw-item__content .sw-item__inner,
 .sw-item .sw-item__content .sw-item__after {
   min-height: 24px;
+}
+.sw-modal-mask {
+  position: fixed;
+  background: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  z-index: -10;
+  transition: 0.5s;
+}
+.showModal {
+  animation: show 0.5s ease 1 forwards;
+}
+.hideModal {
+  animation: hide 0.5s ease 1 forwards;
+}
+.sw-modal {
+  padding: 15px 15px 0 15px;
+  background: #fff;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+  margin: auto;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+  margin-top: 10%;
+}
+.sw-modal .sw-modal-title {
+  line-height: 24px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.sw-modal .sw-modal-title .sw-modal-title-text {
+  font-size: 18px;
+  color: #303133;
+}
+.sw-modal .sw-modal-title .sw-modal-close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.sw-modal .sw-modal-footer {
+  padding: 20px 0 15px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.sw-modal .sw-modal-footer .btn {
+  padding: 12px 20px;
+}
+.sw-modal .sw-modal-footer .right-btn {
+  margin-left: 20px;
+}
+@-moz-keyframes show {
+  from {
+    opacity: 0;
+    margin-top: 80px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 140px;
+  }
+}
+@-webkit-keyframes show {
+  from {
+    opacity: 0;
+    margin-top: 80px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 140px;
+  }
+}
+@-o-keyframes show {
+  from {
+    opacity: 0;
+    margin-top: 80px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 140px;
+  }
+}
+@keyframes show {
+  from {
+    opacity: 0;
+    margin-top: 80px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 140px;
+  }
+}
+@-moz-keyframes hide {
+  from {
+    opacity: 1;
+    margin-top: 140px;
+  }
+  to {
+    opacity: 0;
+    margin-top: 80px;
+  }
+}
+@-webkit-keyframes hide {
+  from {
+    opacity: 1;
+    margin-top: 140px;
+  }
+  to {
+    opacity: 0;
+    margin-top: 80px;
+  }
+}
+@-o-keyframes hide {
+  from {
+    opacity: 1;
+    margin-top: 140px;
+  }
+  to {
+    opacity: 0;
+    margin-top: 80px;
+  }
+}
+@keyframes hide {
+  from {
+    opacity: 1;
+    margin-top: 140px;
+  }
+  to {
+    opacity: 0;
+    margin-top: 80px;
+  }
 }
 .sw-scroll-area {
   background: transparent;

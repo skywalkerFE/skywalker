@@ -50,11 +50,9 @@ export default {
     },
 
     validate(val = this.value) {
-      if (!this.rules || this.rules.length === 0) {
+      if (!this.isDirty || !this.rules || this.rules.length === 0) {
         return
       }
-
-      this.isDirty = true
 
       const update = (err, msg) => {
         if (this.innerError !== err) {
@@ -66,6 +64,7 @@ export default {
         if (this.innerErrorMessage !== m) {
           this.innerErrorMessage = m
         }
+        return !err
       }
 
       for (let i = 0; i < this.rules.length; i++) {
@@ -79,16 +78,15 @@ export default {
         }
 
         if (res === false || typeof res === 'string') {
-          update(true, res)
-          return
+          return update(true, res)
         } else {
-          update(false)
+          return update(false)
         }
       }
     },
 
-    triggerValidation() {
-      if (this.isDirty === false && this.rules !== void 0) {
+    triggerValidation(force = true) {
+      if (force === true || this.isDirty === false) {
         this.isDirty = true
         this.validate(this.value)
       }

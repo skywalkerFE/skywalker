@@ -4,8 +4,8 @@ import Field from './components/field/index.js'
 import Input from './components/input/index.js'
 import Select from './components/select/index.js'
 import ScrollArea from './components/scrollArea/index.js'
-import Ripple from './directives/ripple/index.js'
 import Modal from './components/modal/index.js'
+import Ripple from './directives/ripple/index.js'
 
 const components = [
   Icon,
@@ -42,5 +42,6 @@ export default {
   Input,
   Select,
   ScrollArea,
+  Modal,
   Ripple
 }
