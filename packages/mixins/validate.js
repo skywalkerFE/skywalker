@@ -88,7 +88,7 @@ export default {
     triggerValidation(force = true) {
       if (force === true || this.isDirty === false) {
         this.isDirty = true
-        this.validate(this.value)
+        return this.validate(this.value)
       }
     }
   }
