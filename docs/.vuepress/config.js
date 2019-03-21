@@ -24,7 +24,8 @@ module.exports = {
             'icon',
             'item',
             'input',
-            'select'
+            'select',
+            'modal'
           ]
         },
         {

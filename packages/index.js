@@ -5,6 +5,7 @@ import Input from './components/input/index.js'
 import Select from './components/select/index.js'
 import ScrollArea from './components/scrollArea/index.js'
 import Ripple from './directives/ripple/index.js'
+import Modal from './components/modal/index.js'
 
 const components = [
   Icon,
@@ -12,7 +13,8 @@ const components = [
   Field,
   Input,
   Select,
-  ScrollArea
+  ScrollArea,
+  Modal
 ]
 
 const directives = [

@@ -1,0 +1,62 @@
+.sw-modal-mask
+  position fixed
+  background rgba(0,0,0,0.5)
+  top 0
+  left 0
+  right 0
+  bottom 0
+  overflow auto
+  z-index -10
+  transition 0.5s
+@keyframes show {
+    from {
+        opacity: 0;
+        margin-top: 80px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 140px;
+    }
+}
+
+@keyframes hide {
+    from {
+        opacity: 1;
+        margin-top: 140px;
+    }
+    to {
+        opacity: 0;
+        margin-top: 80px;
+    }
+}  
+.showModal
+  animation: show 0.5s ease 1 forwards;
+.hideModal 
+  animation: hide 0.5s ease 1 forwards;
+.sw-modal
+  padding 15px 15px 0 15px
+  background #fff
+  box-shadow 0 5px 25px rgba(0, 0, 0, 0.1)
+  margin auto
+  border 1px solid rgba(0, 0, 0, 0.1)
+  border-radius 5px
+  margin-top 10%
+  .sw-modal-title
+    line-height 24px
+    position relative
+    margin-bottom 10px
+    .sw-modal-title-text
+      font-size 18px
+      color #303133
+    .sw-modal-close-icon
+      position absolute
+      top 0
+      right 0
+  .sw-modal-footer
+    padding 20px 0 15px 0
+    display flex
+    justify-content flex-end
+    .btn
+      padding: 12px 20px
+    .right-btn
+      margin-left: 20px
