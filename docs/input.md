@@ -1,4 +1,4 @@
-# INPUT
+# Input
 ---
 ### 基本用法
 <common-decorator>

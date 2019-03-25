@@ -1,4 +1,4 @@
-# ICON
+# Icon
 ---
 ### 基本用法
 <common-decorator>
