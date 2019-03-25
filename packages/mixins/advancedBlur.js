@@ -6,6 +6,7 @@ export default {
   computed: {},
   methods: {
     advancedBlur(e) {
+      if (this.disabled) { return }
       let excluded = false
       let getRefs = refNames => {
         let getDoms = els => {
@@ -19,7 +20,6 @@ export default {
         return refNames.reduce((accumulator, ref) => accumulator.concat(getDoms(this.$refs[ref])), [])
       }
       
-      if (this.disabled) { return }
       if (this.excludedBlurRefs) {
         let refs = getRefs(this.excludedBlurRefs)
 

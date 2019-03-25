@@ -65,6 +65,13 @@ export default {
     blur() {
       this.$refs.input.blur()
     },
+    clearFilter() {
+      this.filterValue = ''
+    },
+    triggerBlur(e) {
+      this.focused = false
+      this.$emit(`blur`, e)
+    },
     getInner(h) {
       let getOptions = h => {
         if (this.innerOptions.length) {
@@ -73,8 +80,14 @@ export default {
               selected: this.checkSelected(option)
             },
             nativeOn: {
-              click: () => {
+              click: e => {
                 this.innerValue = this.formatValue(option)
+                this.clearFilter()
+                if (!this.multiple) {
+                  this.triggerBlur(e)
+                } else {
+                  this.focus()
+                }
               }
             },
             scopedSlots: {

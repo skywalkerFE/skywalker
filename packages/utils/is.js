@@ -26,11 +26,15 @@ export function isDeepEqual(a, b) {
 }
 
 export function isStringContain(s, v) {
+  let innerS = String(s)
   let innerV = Array.isArray(v) ? v : [v]
   let sum = 0
 
   innerV.forEach(x => {
-    if (String(s).includes(x)) { sum++ }
+    if (innerS.includes(x)) {
+      innerS = innerS.replace(x, '')
+      sum++
+    }
   })
   return sum >= innerV.length
 }

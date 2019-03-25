@@ -14,7 +14,7 @@ v-model返回去重后的value组成的数组，因为兼容undefined，所以�
 ```
 <common-decorator>
   <div style="width:400px">
-    <sw-select multiple required filter selectedFilled bordered label="label" :rules="rules" :options="options" v-model="val">
+    <sw-select multiple required filter selectedFilled bordered label="label" placeholder="placeholder" :rules="rules" :options="options" v-model="val">
     </sw-select>
     <div>val:{{val}}</div>
   </div>
@@ -32,6 +32,7 @@ v-model返回去重后的value组成的数组，因为兼容undefined，所以�
       selectedFilled
       bordered
       label="label"
+      placeholder="placeholder"
       :rules="rules"
       :options="options"
       v-model="val">
@@ -76,7 +77,7 @@ export default {
     </sw-select>
     <sw-select disabled required label="label" :options="options" v-model="val3">
     </sw-select>
-    <sw-select multiple required label="label" :options="options" v-model="val4">
+    <sw-select multiple required placeholder="placeholder" label="label" :options="options" v-model="val4">
     </sw-select>
     <sw-select multiple required filter label="label" :options="options" v-model="val5">
     </sw-select>
@@ -127,7 +128,7 @@ export default {
     </sw-select>
     <sw-select disabled required label="label" :options="options" v-model="val3">
     </sw-select>
-    <sw-select multiple required label="label" :options="options" v-model="val4">
+    <sw-select multiple required label="label" placeholder="placeholder" :options="options" v-model="val4">
     </sw-select>
     <sw-select multiple required filter label="label" :options="options" v-model="val5">
     </sw-select>
@@ -169,6 +170,7 @@ export default {
 ### 参数
 Name|Type|Required|Default|
 :------:|:------:|:------:|:------:|
+placeholder|String|false||
 v-model|String|true||
 options|Array|true|[]|
 label|String|false||

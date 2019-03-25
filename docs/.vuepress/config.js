@@ -25,7 +25,8 @@ module.exports = {
             'item',
             'input',
             'select',
-            'modal'
+            'modal',
+            'button'
           ]
         },
         {

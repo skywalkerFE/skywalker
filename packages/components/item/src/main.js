@@ -7,9 +7,15 @@ export default {
     wrap: Boolean,
     hideBefore: Boolean,
     hideDefault: Boolean,
-    hideAfter: Boolean
+    hideAfter: Boolean,
+    to: String | Object
   },
   data: () => ({}),
+  computed: {
+    style() {
+      return this.to ? { cursor: 'pointer' } : void 0
+    }
+  },
   render(h) {
     return h('div', {
       staticClass: 'sw-item flex items-center',
@@ -18,6 +24,16 @@ export default {
         border: this.bordered,
         fill: this.filled,
         'no-wrap': !this.wrap
+      },
+      style: this.style,
+      on: {
+        ...this.$listeners,
+        click: e => {
+          if (this.to) {
+            this.$router.push(this.to)
+          }
+          this.$emit('click', e)
+        }
       }
     }, [
       h('div', {

@@ -12,8 +12,14 @@ $medium-gutter = 2 * $min-gutter
 $common-gutter = 2 * $medium-gutter
 $large-gutter = 2 * $common-gutter
 
+$common-shadow = 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12)
+$deep-shadow = 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px rgba(0,0,0,.14), 0 1px 14px rgba(0,0,0,.12)
+
 .hide
     display none !important
+
+.invisible
+    visibility hidden
 
 .padding
     &-min
@@ -104,6 +110,7 @@ body
     &.border
         border 1px solid $grey
         border-radius $border-radius
+        background #fff
     &.fill
         border 1px solid $light-grey
         border-radius $border-radius
@@ -113,5 +120,17 @@ body
     &.focus
         border-color $primary
 
+.sw-mask
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    border-radius inherit
+    opacity .1
+
 .common-shadow
     box-shadow 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12)
+
+.deep-shadow
+    box-shadow 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px rgba(0,0,0,.14), 0 1px 14px rgba(0,0,0,.12)

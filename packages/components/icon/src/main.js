@@ -43,8 +43,7 @@ export default {
       attrs: { 'aria-hidden': true },
       on: this.$listeners
     }, [
-      this.content,
-      this.$slots.default
+      this.content
     ])
   }
 }
