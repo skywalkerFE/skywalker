@@ -5,7 +5,7 @@ Modal 弹出一个对话框，适合需要定制性更大的场景
 
 <common-decorator>
   <div>
-    <a @click="handleClick">点击打开 Modal</a>
+    <sw-button @click="handleClick">点击打开 Modal</sw-button>
     <sw-modal 
       :show="showModal" 
       @cancel="handleCancel"
@@ -43,7 +43,7 @@ export default {
   
 ```html
   <div>
-    <a @click="handleClick">点击打开 Modal</a>
+    <sw-button @click="handleClick">点击打开 Modal</sw-button>
     <sw-modal 
       :show="showModal" 
       @cancel="handleCancel"
@@ -84,7 +84,7 @@ export default {
 ```html
 <common-decorator>
   <div>
-    <a @click="handleClick">点击打开 Modal</a>
+    <sw-button @click="handleClick">点击打开 Modal</sw-button>
     <sw-modal 
       :show="show" 
       title='基本用法'
@@ -98,8 +98,8 @@ export default {
         <p>床前明月光，疑是地上霜。举头望明月，低头思故乡。</p>
       </div>
       <div slot='footer'>
-          <button>取消</button>
-          <button>确认</button>
+        <sw-button>取消</sw-button>
+        <sw-button>确认</sw-button>
       </div>
     </sw-modal>
   </div>
@@ -112,7 +112,7 @@ export default {
 | 参数           | 说明          | 类型     | 可选值  | 默认值  |
 | ------------- |:------------:| -------:|-------:|-------:|
 | show          | 是否展示modal | Boolean | - | false |
-| width         | modal的款    |   String | - | 40% |
+| width         | modal的宽度，支持px，百分比    |   String | - | 40% |
 | title         | 当不使用header插槽的时候，设置title，modal的title    | String | - | - |
 
 ### Slot

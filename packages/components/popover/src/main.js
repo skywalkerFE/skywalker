@@ -19,19 +19,21 @@ export default {
     },
     title: {
       type: String,
-      default: '标题'
     },
     content: {
       type: String,
-      default: '内容内容内容内容内容'
     },
     placement: {
-      type: String
+      type: String,
+      default: 'top'
     },
     trigger: {
       type: String,
       default: 'click',
       validator: value => ['click', 'focus', 'hover', 'manual'].indexOf(value) > -1
+    },
+    width: {
+      type: String,
     }
   },
   computed: {
@@ -171,9 +173,11 @@ export default {
     this.getStyle(popoverElm, referenceElm)
     if(this.trigger === 'manual'){
       on(referenceElm, 'click', this.handleManual);
+      return
     }
     if (this.trigger === 'click') {
       on(referenceElm, 'click', this.handleClick);
+      return
     }
     if(this.trigger === 'hover'){
       on(referenceElm, 'mouseenter', this.handleMouseEnter)
@@ -210,7 +214,7 @@ export default {
               staticClass: 'sw-popover',
               class: 'sw-popover-show',
               ref: 'popover',
-              style: Object.assign(this.popoverStyle, this.showStyle)
+              style: Object.assign(Object.assign(this.popoverStyle, {width: this.width }), this.showStyle)
         }, [ this.title  
               ? h('div', {
                 class: 'sw-popover-title'
