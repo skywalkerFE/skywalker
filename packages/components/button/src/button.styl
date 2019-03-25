@@ -1,0 +1,66 @@
+.sw-button
+    position relative
+    color $primary
+    font-size inherit
+    font-weight inherit
+    border none
+    padding 0
+    outline none
+    &.underline
+        border-bottom 1px solid $primary
+    &.border
+        border 1px solid $primary
+        border-radius $border-radius
+        background #fff
+    &.fill
+        color #fff
+        padding 1px
+        border-radius $border-radius
+        background-color $primary
+        &.primary
+            background-color $primary
+        &.negative
+            background-color $negative
+        &.positive
+            background-color $positive
+        &.warning
+            background-color $warning
+        &.grey
+            background-color $grey
+    &:not(.fill)
+        &.primary
+            color $primary
+            border-color $primary
+        &.negative
+            color $negative
+            border-color $negative
+        &.positive
+            color $positive
+            border-color $positive
+        &.warning
+            color $warning
+            border-color $warning
+        &.grey
+            color $grey
+            border-color $grey
+    .sw-item
+        &:not(.round-slot)
+            padding 0 $common-gutter - $min-gutter
+        &.round-slot
+            padding $min-gutter
+    .sw-button__before, .sw-button__inner, .sw-button__after
+        min-height $large-gutter
+    &.round
+        border-radius 999px
+    &:before
+        content ''
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        border-radius inherit
+        transition .3s cubic-bezier(.25,.8,.5,1)
+    &.common-shadow:active
+        &:before
+            box-shadow $deep-shadow

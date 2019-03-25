@@ -17,12 +17,12 @@ export default {
       this.$refs.input.blur()
     },
     getInner(h) {
-      return h('input', {
+      return [h('input', {
         ref: 'input',
         staticClass: 'sw-input margin-min',
         domProps: {
           value: this.value,
-          placeholder: this.placeholder,
+          placeholder: this.placeholder || '',
           disabled: this.disabled
         },
         on: {
@@ -31,7 +31,7 @@ export default {
             this.$emit('input', e.target.value)
           }
         }
-      })
+      })]
     }
   }
 }

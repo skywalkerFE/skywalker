@@ -13,9 +13,13 @@ export default {
     label: String
   },
   data: () => ({
-    focused: false,
-    blurRefs: ['fieldContent']
+    focused: false
   }),
+  computed: {
+    blurRefs() {
+      return ['fieldContent']
+    }
+  },
   watch: {
     focused() {
       if (this.focused && this.focus) { this.focus() }
@@ -57,17 +61,17 @@ export default {
           staticClass: 'flex-auto',
           scopedSlots: {
             before: this.$scopedSlots.before !== void 0
-              ? () => h('div', {
+              ? () => [h('div', {
                 staticClass: 'flex no-wrap items-center margin-min'
-              }, this.$scopedSlots.before()) : void 0,
+              }, [this.$scopedSlots.before()])] : void 0,
 
-            default: this.getInner !== void 0
-              ? () => this.getInner(h) : void 0,
+            default: this.$scopedSlots.default !== void 0 || this.getInner !== void 0
+              ? () => [this.getInner !== void 0 ? this.getInner(h) : void 0, this.$scopedSlots.default !== void 0 ? this.$scopedSlots.default() : void 0] : void 0,
 
             after: this.$scopedSlots.after !== void 0 || this.getAfter !== void 0
-              ? () => h('div', {
+              ? () => [h('div', {
                 staticClass: 'flex no-wrap items-center margin-min'
-              }, [this.getAfter !== void 0 ? this.getAfter(h) : void 0, this.$scopedSlots.after !== void 0 ? this.$scopedSlots.after() : void 0]) : void 0
+              }, [this.getAfter !== void 0 ? this.getAfter(h) : void 0, this.$scopedSlots.after !== void 0 ? this.$scopedSlots.after() : void 0])] : void 0
           }
         }),
 

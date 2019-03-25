@@ -6,13 +6,26 @@ export default {
   computed: {},
   methods: {
     advancedBlur(e) {
-      let excluded = false
-
       if (this.disabled) { return }
+      let excluded = false
+      let getRefs = refNames => {
+        let getDoms = els => {
+          els = Array.isArray(els) ? els : [els]
+          return els.reduce((accumulator, el) => {
+            accumulator.push(el && (el.$el || el))
+            return accumulator
+          }, [])
+        }
+
+        return refNames.reduce((accumulator, ref) => accumulator.concat(getDoms(this.$refs[ref])), [])
+      }
+      
       if (this.excludedBlurRefs) {
-        this.excludedBlurRefs.some(ref => {
-          if (this.$refs[ref] === void 0) { return false }
-          excluded = this.$refs[ref].contains(e.target) || false
+        let refs = getRefs(this.excludedBlurRefs)
+
+        refs.some(ref => {
+          if (ref === void 0) { return false }
+          excluded = ref.contains(e.target) || false
           return excluded
         })
       }
@@ -25,9 +38,11 @@ export default {
       if (this.blurType === 'reverse' && focusedBefore) {
         this.focused = !focusedBefore
       } else {
-        this.blurRefs.some(ref => {
-          if (this.$refs[ref] === void 0) { return false }
-          this.focused = this.$refs[ref].contains(e.target) || false
+        let refs = getRefs(this.blurRefs)
+
+        refs.some(ref => {
+          if (ref === void 0) { return false }
+          this.focused = ref.contains(e.target) || false
           return this.focused
         })
       }

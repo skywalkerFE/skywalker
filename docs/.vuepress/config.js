@@ -26,7 +26,8 @@ module.exports = {
             'input',
             'select',
             'modal',
-            'popover'
+            'popover',
+            'button'
           ]
         },
         {

@@ -1,8 +1,13 @@
 .sw-field
     padding $common-gutter
+    .sw-field__label
+        .sw-label
+            white-space nowrap
     &.disable
         .sw-field__label
             color $grey
+            .sw-label
+                white-space nowrap
         .sw-field__content
             background $light-grey
     .sw-field__label
@@ -53,9 +58,6 @@
             &:hover:not(.error)
                 border-color $primary !important
                 cursor pointer
-            &:hover
-                .sw-input.hover-highlight
-                    border-bottom 1px solid $primary !important
             &.fill:hover
                 background-color $primary !important
                 color #fff

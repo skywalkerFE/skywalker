@@ -3,9 +3,9 @@
 ### 基本用法
 <common-decorator>
   <div>
-    <sw-input v-model="val0" placeholder="test">
+    <sw-input v-model="val0" placeholder="placeholder">
     </sw-input>
-    <sw-input v-model="val1" disabled placeholder="test">
+    <sw-input v-model="val1" disabled placeholder="placeholder">
     </sw-input>
     <sw-input label="label" v-model="val2">
     </sw-input>
@@ -44,9 +44,9 @@ export default {
 </script>
 
 ``` html
-    <sw-input v-model="val0" placeholder="test">
+    <sw-input v-model="val0" placeholder="placeholder">
     </sw-input>
-    <sw-input v-model="val1" disabled placeholder="test">
+    <sw-input v-model="val1" disabled placeholder="placeholder">
     </sw-input>
     <sw-input label="label" v-model="val2">
     </sw-input>
@@ -87,6 +87,7 @@ export default {
 
 Name|Type|Required|Default|
 :------:|:------:|:------:|:------:|
+placeholder|String|false||
 v-model|String|true||
 label|String|false||
 required|Boolean|false|false|

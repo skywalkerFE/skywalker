@@ -3,7 +3,7 @@
 ### 基本用法
 <common-decorator>
   <div>
-    <sw-item>
+    <sw-item :to="to">
       <sw-icon slot="before" name="alarm"></sw-icon>
       <div slot="after">一些文本</div>
       <div>inner</div>
@@ -13,12 +13,14 @@
 
 <script>
 export default {
-  data: ()=>({})
+  data: ()=>({
+    to:'icon.html'
+  })
 }
 </script>
 
 ``` html
-    <sw-item>
+    <sw-item :to="to">
       <sw-icon slot="before" name="alarm"></sw-icon>
       <div slot="after">一些文本</div>
       <div>inner</div>
@@ -27,11 +29,17 @@ export default {
 
 ``` js
 export default {
-  data: ()=>({})
+  data: ()=>({
+    to:'icon.html'
+  })
 }
 ```
 
 ### 参数
+
+Name|Type|Required||
+:------:|:------:|:------:|:------:|
+to|String\|Object|false|<a>https://router.vuejs.org/zh/guide/essentials/navigation.html</a>|
 
 ### 插槽
 
