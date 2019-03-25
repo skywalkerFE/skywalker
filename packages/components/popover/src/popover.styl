@@ -1,0 +1,45 @@
+.sw-popover-contain
+  position relative
+  .sw-popover
+    position absolute
+    padding 12px
+    background #fff
+    box-shadow 0 2px 12px rgba(0, 0, 0, 0.1)
+    margin auto
+    border 1px solid #ebeef5
+    border-radius 5px
+    min-width 150px
+    &-show
+      transition 0.5s
+    &-title
+      color #303133
+      font-size 16px
+      line-height 1
+      margin-bottom 12px
+    &-content
+      color #606266
+      line-height 1.4
+      text-align justify
+      font-size 14px
+    &-arrow
+      position absolute
+      width 9px
+      height 9px
+      background #fff
+      content ''
+      bottom -4px
+      transform rotate(45deg)
+      box-shadow 1px 1px 1px 0px rgba(0,0,0,0.1)
+      &-top
+        bottom -4px
+        box-shadow 1px 1px 1px 0px rgba(0,0,0,0.1)
+      &-bottom
+        top -4px
+        box-shadow -1px -1px 1px 0px rgba(0,0,0,0.1)
+      &-right
+        left -4px  
+        box-shadow -1px 1px 1px 0px rgba(0,0,0,0.1)
+      &-left
+        right -4px  
+        box-shadow 1px -1px 1px 0px rgba(0,0,0,0.1)
+        
