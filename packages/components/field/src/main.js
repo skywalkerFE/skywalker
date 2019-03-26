@@ -10,7 +10,8 @@ export default {
     required: Boolean,
     bordered: Boolean,
     disabled: Boolean,
-    label: String
+    label: String,
+    forceCheck: String | Object
   },
   data: () => ({
     focused: false

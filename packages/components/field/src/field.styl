@@ -36,13 +36,14 @@
     .sw-field__error
         position absolute
         right 0
-        padding 0 $common-gutter
+        padding $min-gutter $common-gutter
         transform translate(calc(100% + 18px))
         border-radius $border-radius
         box-shadow 0px 1px 1px rgba(0,0,0,0.2), 0px 0px 4px rgba(0,0,0,0.2)
-        height 100%
+        min-height 100%
         background #fff
         color $negative
+        z-index 9
         &:before
             position absolute
             top calc(50% - 4.5px)
