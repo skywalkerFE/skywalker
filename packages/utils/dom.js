@@ -1,3 +1,7 @@
+import Vue from 'vue'
+
+const isServer = Vue.prototype.$isServer;
+
 export function offset(el) {
   if (el === window) {
     return { top: 0, left: 0 }
@@ -46,7 +50,39 @@ export function ready(fn) {
   
   document.addEventListener('DOMContentLoaded', fn, false)
 }
-  
+
+export const on = (function() {
+  if (!isServer && document.addEventListener) {
+    return function(element, event, handler) {
+      if (element && event && handler) {
+        element.addEventListener(event, handler, false);
+      }
+    };
+  } else {
+    return function(element, event, handler) {
+      if (element && event && handler) {
+        element.attachEvent('on' + event, handler);
+      }
+    };
+  }
+})();
+
+export const off = (function() {
+  if (!isServer && document.removeEventListener) {
+    return function(element, event, handler) {
+      if (element && event) {
+        element.removeEventListener(event, handler, false);
+      }
+    };
+  } else {
+    return function(element, event, handler) {
+      if (element && event) {
+        element.detachEvent('on' + event, handler);
+      }
+    };
+  }
+})();  
+
 export default {
   offset,
   style,
@@ -54,5 +90,7 @@ export default {
   width,
   css,
   cssBatch,
-  ready
+  ready,
+  on,
+  off
 }

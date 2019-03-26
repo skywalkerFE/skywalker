@@ -5,6 +5,7 @@ import Input from './components/input/index.js'
 import Select from './components/select/index.js'
 import ScrollArea from './components/scrollArea/index.js'
 import Modal from './components/modal/index.js'
+import Popover from './components/popover/index.js'
 import Button from './components/button/index.js'
 import Ripple from './directives/ripple/index.js'
 
@@ -16,6 +17,7 @@ const components = [
   Select,
   ScrollArea,
   Modal,
+  Popover,
   Button
 ]
 
@@ -44,6 +46,8 @@ export default {
   Input,
   Select,
   ScrollArea,
+  Ripple,
+  Popover,
   Modal,
   Button,
   Ripple

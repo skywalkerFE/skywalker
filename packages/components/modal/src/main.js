@@ -1,5 +1,9 @@
+import swButton from '../../button'
 export default {
   name: 'swModal',
+  components: {
+    swButton
+  },
   props: {
     show: {
       type: Boolean,
@@ -96,7 +100,7 @@ export default {
                         class: 'sw-modal-footer'
                     }, 
                     [
-                      h('button',{
+                      h('sw-button',{
                         class: 'btn left-btn',
                         on: {
                           click: ()=>{
@@ -105,7 +109,7 @@ export default {
                           }
                         }
                       }, '取消'),
-                      h('button',{
+                      h('sw-button',{
                         class: 'btn right-btn',
                         on: {
                           click: ()=>{

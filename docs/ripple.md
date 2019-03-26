@@ -1,4 +1,4 @@
-# RIPPLE
+# Ripple
 ---
 ### 基本用法
 <common-decorator>
