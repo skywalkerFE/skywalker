@@ -27,7 +27,8 @@ module.exports = {
             'select',
             'modal',
             'popover',
-            'button'
+            'button',
+            'pagination'
           ]
         },
         {

@@ -8,6 +8,7 @@ import Modal from './components/modal/index.js'
 import Popover from './components/popover/index.js'
 import Button from './components/button/index.js'
 import Ripple from './directives/ripple/index.js'
+import Pagination from './components/pagination/index.js'
 
 const components = [
   Icon,
@@ -18,7 +19,8 @@ const components = [
   ScrollArea,
   Modal,
   Popover,
-  Button
+  Button,
+  Pagination
 ]
 
 const directives = [
@@ -50,5 +52,6 @@ export default {
   Popover,
   Modal,
   Button,
-  Ripple
+  Ripple,
+  Pagination
 }
