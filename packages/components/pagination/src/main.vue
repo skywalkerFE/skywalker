@@ -4,7 +4,7 @@
       {{`共${total}条`}}
     </div>
     <div class="sw-pagination-select" v-if="layout.indexOf('select') > -1">
-      <sw-select v-model="pageSizeValue" :options="selectOption" selectedFilled bordered></sw-select>
+      <sw-select v-model="pageSizeValue" :options="selectOption" selectedFilled bordered mini selectedStyle="none"></sw-select>
     </div>
     <div class="sw-pagination-page">
       <span class="sw-pagination-page-item" @click="handleClickArrow('left')"><i class="material-icons sw-pagination-page-item-icon">keyboard_arrow_left</i></span>
@@ -18,8 +18,8 @@
     </div>
     <div class="sw-pagination-goto" v-if="layout.indexOf('goto') > -1">
       <span>前往</span>
-      <div>
-        <sw-input bordered v-model='inputValue' @keyup.enter.native="handleEnterGoto"></sw-input>
+      <div class="sw-pagination-goto-input">
+        <sw-input bordered v-model='inputValue' @keyup.enter.native="handleEnterGoto" mini style="width:40px"></sw-input>
       </div>
       <span>页</span>
     </div>
@@ -45,10 +45,12 @@ export default {
       type: Number
     },
     pageSize: {
-      type: Number
+      type: Number,
+      default: 20
     },
     options: {
-      type: Array
+      type: Array,
+      default: [20, 40, 60, 80]
     },
     currentPage: {
       type: Number
