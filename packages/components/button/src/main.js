@@ -26,7 +26,6 @@ export default {
       staticClass: 'sw-button flex no-wrap items-center',
       style: {
         color: !this.disabled && !this.filled && this.color || void 0,
-        'border-color': !this.disabled && !this.filled && this.color || void 0,
         'background-color': !this.disabled && this.filled && this.color || void 0
       },
       class: {

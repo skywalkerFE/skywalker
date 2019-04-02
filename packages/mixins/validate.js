@@ -14,8 +14,14 @@ export default {
   },
 
   watch: {
-    value(v) {
+    forceCheck(v) {
       if (this.rules === void 0) {
+        return
+      }
+      this.validate(v)
+    },
+    value(v) {
+      if (this.forceCheck !== void 0 || this.rules === void 0) {
         return
       }
       this.validate(v)
@@ -23,6 +29,9 @@ export default {
   },
 
   computed: {
+    validateValue() {
+      return this.forceCheck === void 0 ? this.value : this.forceCheck
+    },
     hasError() {
       return this.innerError === true
     },
@@ -49,7 +58,7 @@ export default {
       this.innerErrorMessage = void 0
     },
 
-    validate(val = this.value) {
+    validate(val = this.validateValue) {
       if (!this.isDirty || !this.rules || this.rules.length === 0) {
         return
       }
@@ -64,31 +73,29 @@ export default {
         if (this.innerErrorMessage !== m) {
           this.innerErrorMessage = m
         }
-        return !err
+        return err
       }
 
-      for (let i = 0; i < this.rules.length; i++) {
-        const rule = this.rules[i]
+      return !this.rules.some(rule => {
         let res
 
         if (typeof rule === 'function') {
           res = rule(val)
         } else {
-          continue
+          return false
         }
-
         if (res === false || typeof res === 'string') {
           return update(true, res)
         } else {
           return update(false)
         }
-      }
+      })
     },
 
     triggerValidation(force = true) {
       if (force === true || this.isDirty === false) {
         this.isDirty = true
-        return this.validate(this.value)
+        return this.validate(this.validateValue)
       }
     }
   }

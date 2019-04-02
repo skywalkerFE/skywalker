@@ -19,7 +19,7 @@ export default {
       type: String,
       default: '200px'
     },
-    selectedFilled: Boolean
+    selectedStyle: String
   },
   data: () => ({
     blurType: 'reverse',
@@ -108,38 +108,43 @@ export default {
       }
 
       let getSelected = h => this.innerValue.map(x => h('sw-item', {
-        staticClass: 'margin-min',
+        staticClass: 'margin-min sw-form selected-option',
+        class: this.selectedStyle === void 0
+          ? {
+            underline: this.underlined,
+            border: this.bordered,
+            fill: this.filled
+          } : {
+            [this.selectedStyle]: true
+          },
         ref: 'selected',
         refInFor: true,
-        props: {
-          formStyle: true,
-          bordered: this.bordered,
-          filled: this.selectedFilled
-        },
         scopedSlots: {
           default: () => [h('div', {
             style: {
-              padding: '0 3px'
+              padding: this.mini ? '0 0 0 9px' : '0 9px',
+              'white-space': this.mini ? 'nowrap' : void 0
             }
           }, String(this.getName(x)))],
-          after: () => [h('sw-icon', {
+          after: !this.mini ? () => [h('sw-icon', {
             class: {
               'hover-color-primary': true,
               'color-grey': true
             },
             style: {
-              'border-radius': '50%'
+              'border-radius': '50%',
+              padding: '0 3px 0 0'
             },
             props: {
-              name: this.selectedFilled ? 'cancel' : 'clear',
-              size: '15px'
+              name: this.filled && this.selectedStyle === void 0 || this.selectedStyle === 'fill' ? 'cancel' : 'clear',
+              size: '14px'
             },
             nativeOn: {
               click: () => {
                 this.innerValue = this.formatValue(x, 'remove')
               }
             }
-          })]
+          })] : void 0
         }
       }))
 
