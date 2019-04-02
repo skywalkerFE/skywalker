@@ -1,9 +1,6 @@
 export default {
   name: 'swItem',
   props: {
-    formStyle: Boolean,
-    bordered: Boolean,
-    filled: Boolean,
     wrap: Boolean,
     hideBefore: Boolean,
     hideDefault: Boolean,
@@ -20,9 +17,6 @@ export default {
     return h('div', {
       staticClass: 'sw-item flex items-center',
       class: {
-        'sw-form': this.formStyle,
-        border: this.bordered,
-        fill: this.filled,
         'no-wrap': !this.wrap
       },
       style: this.style,

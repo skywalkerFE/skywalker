@@ -14,14 +14,10 @@
         position relative
         margin-right $large-gutter
     .sw-required
-        position absolute
-        right 0
-        transform translate(9px)
+        padding-left $min-gutter
         color $negative
     .sw-field__content
         position relative
-        padding $min-gutter
-        background #fff
         flex auto
         .sw-field__disabled
             position absolute
@@ -36,13 +32,14 @@
     .sw-field__error
         position absolute
         right 0
-        padding 0 $common-gutter
+        padding $min-gutter $common-gutter
         transform translate(calc(100% + 18px))
         border-radius $border-radius
         box-shadow 0px 1px 1px rgba(0,0,0,0.2), 0px 0px 4px rgba(0,0,0,0.2)
-        height 100%
+        min-height "calc(100% - %s)" % $medium-gutter
         background #fff
         color $negative
+        z-index 9
         &:before
             position absolute
             top calc(50% - 4.5px)
@@ -58,11 +55,3 @@
             &:hover:not(.error)
                 border-color $primary !important
                 cursor pointer
-            &.fill:hover
-                background-color $primary !important
-                color #fff
-                .sw-icon
-                    color inherit !important
-                    opacity .6
-                    &:hover
-                        opacity 1
