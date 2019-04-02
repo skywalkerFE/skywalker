@@ -3,7 +3,8 @@ $negative = #bf0201
 $positive = #4bca81
 $warning = #ffb75d
 $grey = #c9c7c5
-$light-grey = rgba(0,0,0,.05)
+$light-grey = #f2f2f2
+$shadow-grey = rgba(0,0,0,.05)
 
 $common-size = 14px
 $border-radius = 4px
@@ -14,6 +15,7 @@ $large-gutter = 2 * $common-gutter
 
 $common-shadow = 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12)
 $deep-shadow = 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px rgba(0,0,0,.14), 0 1px 14px rgba(0,0,0,.12)
+$common-transition = cubic-bezier(.25,.8,.5,1)
 
 .hide
     display none !important
@@ -103,22 +105,36 @@ body
     background-color $light-grey
 
 .sw-form
-    border-top none
-    border-left none
-    border-right none
-    border-bottom 1px solid $grey
+    &.underline
+        background #fff
+        &:before
+            border-width  0 0 1px 0
     &.border
-        border 1px solid $grey
         border-radius $border-radius
         background #fff
+        &:before
+            border-width 1px
     &.fill
-        border 1px solid $light-grey
         border-radius $border-radius
-        background-color $light-grey  
+        background-color $light-grey
     &.error
-        border-color $negative
+        &:before
+            border-color $negative
     &.focus
-        border-color $primary
+        &:before
+            border-color $primary
+    &:before
+        content ''
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        border-radius inherit
+        border-width 0
+        border-style solid
+        border-color $grey
+        transition .6s $common-transition
 
 .sw-mask
     position absolute

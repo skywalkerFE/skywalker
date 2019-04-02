@@ -14,7 +14,7 @@ v-model返回去重后的value组成的数组，因为兼容undefined，所以�
 ```
 <common-decorator>
   <div style="width:400px">
-    <sw-select multiple required filter selectedFilled bordered label="label" placeholder="placeholder" :rules="rules" :options="options" v-model="val">
+    <sw-select multiple required filter selectedStyle="fill" bordered label="label" placeholder="placeholder" :rules="rules" :options="options" v-model="val">
     </sw-select>
     <div>val:{{val}}</div>
   </div>
@@ -29,8 +29,8 @@ v-model返回去重后的value组成的数组，因为兼容undefined，所以�
       multiple
       required
       filter
-      selectedFilled
       bordered
+      selectedStyle="fill"
       label="label"
       placeholder="placeholder"
       :rules="rules"
@@ -67,35 +67,40 @@ export default {
 ### 基本用法
 <common-decorator>
   <div style="width:400px">
-    <sw-select :options="options" v-model="val0">
+    <sw-select :options="options" underlined v-model="val0">
     </sw-select>
-    <sw-select label="label" :options="options" v-model="val1">
+    <sw-select label="underlined" underlined :options="options" v-model="val1">
     </sw-select>
-    <sw-select required label="label" :options="options" v-model="val2">
+    <sw-select required label="underlined" underlined selectedStyle="none" :options="options" v-model="val2">
       <sw-icon slot="before" name="alarm"></sw-icon>
       <div slot="after">一些文本</div>
     </sw-select>
-    <sw-select disabled required label="label" :options="options" v-model="val3">
+    <sw-select disabled required bordered label="disabled" :options="options" v-model="val3">
     </sw-select>
-    <sw-select multiple required placeholder="placeholder" label="label" :options="options" v-model="val4">
+    <sw-select multiple required bordered placeholder="placeholder" selectedStyle="fill" label="bordered" :options="options" v-model="val4">
     </sw-select>
-    <sw-select multiple required filter label="label" :options="options" v-model="val5">
+    <sw-select multiple required filter bordered label="bordered" :options="options" v-model="val5">
     </sw-select>
-    <sw-select multiple required filter bordered label="label" :options="options" v-model="val6">
+    <sw-select multiple required filter selectedStyle="fill" bordered label="bordered" :options="options" v-model="val6">
     </sw-select>
-    <sw-select multiple required filter selectedFilled bordered label="label" :options="options" v-model="val7">
-    </sw-select>
-    <sw-select multiple required filter selectedFilled bordered label="label" :rules="rules" :options="options" v-model="val8">
+    <sw-select multiple required filter selectedStyle="fill" bordered label="bordered" :rules="rules" :options="options" v-model="val7">
       <sw-icon slot="before" name="alarm"></sw-icon>
       <div slot="after">一些文本</div>
     </sw-select>
+    <sw-select multiple required filter filled label="filled(not recommended)" :options="options" v-model="val8">
+    </sw-select>
+    <sw-item style="display:inline-block">
+      <div slot="before">共xx页</div>
+      <sw-select mini :options="pages" selectedStyle="none" bordered v-model="val9">
+      </sw-select>
+    </sw-item>
   </div>
 </common-decorator>
 
 <script>
 export default {
   data: ()=>({
-    val0:[],val1:[],val2:[],val3:[],val4:[],val5:[],val6:[],val7:[],val8:[],val:[],
+    val0:[],val1:[],val2:[],val3:[],val4:[],val5:[],val6:[],val7:[],val8:[],val9:['5条/页'],val:[],
     options:[
       undefined,
       {name:'option-undefined',value:undefined},
@@ -107,6 +112,7 @@ export default {
       NaN,
       {name:'option-NaN',value:NaN}
     ],
+    pages:['5条/页','10条/页','20条/页','30条/页','40条/页'],
     rules:[val => val.length>0 || '必填项']
   }),
   watch:{
@@ -118,34 +124,39 @@ export default {
 </script>
 
 ``` html
-    <sw-select :options="options" v-model="val0">
+    <sw-select :options="options" underlined v-model="val0">
     </sw-select>
-    <sw-select label="label" :options="options" v-model="val1">
+    <sw-select label="underlined" underlined :options="options" v-model="val1">
     </sw-select>
-    <sw-select required label="label" :options="options" v-model="val2">
+    <sw-select required label="underlined" underlined selectedStyle="none" :options="options" v-model="val2">
       <sw-icon slot="before" name="alarm"></sw-icon>
       <div slot="after">一些文本</div>
     </sw-select>
-    <sw-select disabled required label="label" :options="options" v-model="val3">
+    <sw-select disabled required bordered label="disabled" :options="options" v-model="val3">
     </sw-select>
-    <sw-select multiple required label="label" placeholder="placeholder" :options="options" v-model="val4">
+    <sw-select multiple required bordered placeholder="placeholder" selectedStyle="fill" label="bordered" :options="options" v-model="val4">
     </sw-select>
-    <sw-select multiple required filter label="label" :options="options" v-model="val5">
+    <sw-select multiple required filter bordered label="bordered" :options="options" v-model="val5">
     </sw-select>
-    <sw-select multiple required filter bordered label="label" :options="options" v-model="val6">
+    <sw-select multiple required filter selectedStyle="fill" bordered label="bordered" :options="options" v-model="val6">
     </sw-select>
-    <sw-select multiple required filter selectedFilled bordered label="label" :options="options" v-model="val7">
-    </sw-select>
-    <sw-select multiple required filter selectedFilled bordered label="label" :rules="rules" :options="options" v-model="val8">
+    <sw-select multiple required filter selectedStyle="fill" bordered label="bordered" :rules="rules" :options="options" v-model="val7">
       <sw-icon slot="before" name="alarm"></sw-icon>
       <div slot="after">一些文本</div>
     </sw-select>
+    <sw-select multiple required filter filled label="filled(not recommended)" :options="options" v-model="val8">
+    </sw-select>
+    <sw-item style="display:inline-block">
+      <div slot="before">共xx页</div>
+      <sw-select mini :options="pages" selectedStyle="none" bordered v-model="val9">
+      </sw-select>
+    </sw-item>
 ```
 
 ``` js
 export default {
   data: ()=>({
-    val0:[],val1:[],val2:[],val3:[],val4:[],val5:[],val6:[],val7:[],val8:[],val:[],
+    val0:[],val1:[],val2:[],val3:[],val4:[],val5:[],val6:[],val7:[],val8:[],val9:['5条/页'],val:[],
     options:[
       undefined,
       {name:'option-undefined',value:undefined},
@@ -157,6 +168,7 @@ export default {
       NaN,
       {name:'option-NaN',value:NaN}
     ],
+    pages:['5条/页','10条/页','20条/页','30条/页','40条/页'],
     rules:[val => val.length>0 || '必填项']
   }),
   watch:{
@@ -168,19 +180,22 @@ export default {
 ```
 
 ### 参数
-Name|Type|Required|Default|
-:------:|:------:|:------:|:------:|
-placeholder|String|false||
-v-model|String|true||
-options|Array|true|[]|
-label|String|false||
-required|Boolean|false|false|
-bordered|Boolean|false|false|
-disabled|Boolean|false|false|
-multiple|Boolean|false|false|
-filter|Boolean|false|false|
-selectedFilled|Boolean|false|false|
-rules|Array\<Function\>|false||
+Name|Type|Required|Default||
+:------:|:------:|:------:|:------:|:------:|
+placeholder|String|false|||
+v-model|String|true|||
+options|Array|true|[]||
+label|String|false|||
+required|Boolean|false|false||
+underlined|Boolean|false|false||
+bordered|Boolean|false|false||
+filled|Boolean|false|false|不推荐，容易和disable混淆|
+disabled|Boolean|false|false||
+multiple|Boolean|false|false||
+filter|Boolean|false|false||
+selectedStyle|Boolean|false||'none'\|'underline'\|'border'\|'fill'|
+rules|Array\<Function\>|false|||
+mini|Boolean|false|false|缩小|
 
 ### 插槽
 

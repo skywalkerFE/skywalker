@@ -21,7 +21,7 @@
     <sw-button style="margin:10px" bordered disabled round>
     DISABLED
     </sw-button>
-    <sw-button style="margin:10px" negative bordered shadow v-ripple to="ripple.html">
+    <sw-button style="margin:10px" color="purple" bordered shadow v-ripple to="ripple.html">
     GO TO RIPPLE
     </sw-button>
     <sw-button style="margin:10px" warning filled shadow v-ripple>

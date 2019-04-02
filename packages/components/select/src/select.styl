@@ -1,3 +1,17 @@
+.selected-option
+    &.fill
+        background-color $shadow-grey
+        &:before
+            border-width 1px
+            border-color $shadow-grey
+    &.fill:hover
+        background-color $primary !important
+        color #fff
+        .sw-icon
+            color inherit !important
+            opacity .6
+            &:hover
+                opacity 1
 .sw-select__options
     position absolute
     bottom 0
@@ -12,17 +26,18 @@
             cursor pointer
         &.selected
             color $primary
+
     .sw-select__option
         box-sizing content-box
-        padding $medium-gutter
+        padding $medium-gutter $common-gutter
         height $large-gutter
         line-height $large-gutter
         font-size $common-size
         outline none
         width 100%
-        min-width 100px
         background transparent
         cursor pointer
+        white-space nowrap
         &.no-options
             color $grey
             cursor default

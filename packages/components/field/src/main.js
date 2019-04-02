@@ -8,8 +8,11 @@ export default {
   components: { Item },
   props: {
     required: Boolean,
+    underlined: Boolean,
     bordered: Boolean,
+    filled: Boolean,
     disabled: Boolean,
+    mini: Boolean,
     label: String,
     forceCheck: String | Object
   },
@@ -49,9 +52,12 @@ export default {
         ref: 'fieldContent',
         staticClass: 'sw-field__content flex no-wrap items-center sw-form',
         class: {
+          underline: this.underlined,
           border: this.bordered,
+          fill: this.filled,
           focus: !this.hasError && this.focused,
-          error: this.hasError
+          error: this.hasError,
+          'padding-min': !this.mini
         }
       }, [
         this.disabled ? h('div', {
