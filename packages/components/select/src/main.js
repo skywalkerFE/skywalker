@@ -226,7 +226,9 @@ export default {
       return this.innerValue.some(x => isDeepEqual(x, this.getValue(option)))
     },
     getExactValues(value) {
-      return value.reduce((a, c) => {
+      let v = Array.isArray(value) ? value : [value]
+
+      return v.reduce((a, c) => {
         if (this.options.some(x => isDeepEqual(this.getValue(x), c))) {
           a.push(c)
         }
