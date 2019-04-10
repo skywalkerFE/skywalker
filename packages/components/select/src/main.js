@@ -1,7 +1,8 @@
 import Field from '../../field'
 import ScorllArea from '../../scrollArea'
 import { isDeepEqual, isStringContain, isObject } from '../../../utils/is'
-import { deduplicate } from '../../../utils/deduplicate'
+
+// import { deduplicate } from '../../../utils/deduplicate'
 
 export default {
   name: 'swSelect',
@@ -11,7 +12,9 @@ export default {
   },
   props: {
     multiple: Boolean,
-    value: String | Array,
+    value: {
+      required: true
+    },
     options: Array,
     filter: Boolean,
     placeholder: String,
@@ -31,14 +34,12 @@ export default {
     },
     innerValue: {
       get() {
-        let value = this.findOptions(deduplicate(this.value))
-
-        return value
+        return this.getExactValues(this.value)
       },
       set(val) {
         this.$emit(
           'input',
-          deduplicate(val.map(x => this.getValue(x)))
+          val
         )
       }
     },
@@ -46,14 +47,16 @@ export default {
       return this.options.reduce((a, c) => {
         let filterArr = this.filterValue.replace(/\s+/g, '').split('')
 
-        if (isStringContain(this.getName(c), filterArr)) { a.push(c) }
+        if (isStringContain(this.getName(c), filterArr)) {
+          a.push(c)
+        }
         return a
       }, []) || []
     }
   },
   watch: {
     options() {
-      this.innerValue = this.findOptions(deduplicate(this.value))
+      this.innerValue = this.getExactValues(this.value)
     }
   },
   methods: {
@@ -107,7 +110,7 @@ export default {
         }
       }
 
-      let getSelected = h => this.innerValue.map(x => h('sw-item', {
+      let getSelected = h => this.getExactOptions(this.innerValue).map(x => h('sw-item', {
         staticClass: 'margin-min sw-form selected-option',
         class: this.selectedStyle === void 0
           ? {
@@ -122,7 +125,7 @@ export default {
         scopedSlots: {
           default: () => [h('div', {
             style: {
-              padding: this.mini ? '0 0 0 9px' : '0 9px',
+              padding: this.mini ? '3px 0 3px 9px' : '3px 9px',
               'white-space': this.mini ? 'nowrap' : void 0
             }
           }, String(this.getName(x)))],
@@ -207,38 +210,40 @@ export default {
 
       if (this.multiple) {
         this.innerValue.forEach(x => {
-          if (this.realEqual(x, option)) {
+          if (isDeepEqual(x, this.getValue(option))) {
             duplicated = true
           } else {
             res.push(x)
           }
         })
       } else if (ope === 'remove') { duplicated = true }
-      return duplicated ? res : res.concat(option)
+      if (!duplicated) {
+        res.push(this.getValue(option))
+      }
+      return res
     },
     checkSelected(option) {
-      let selected = false
-
-      this.innerValue.forEach(x => {
-        if (this.realEqual(x, option)) {
-          selected = true
-        }
-      })
-      return selected
+      return this.innerValue.some(x => isDeepEqual(x, this.getValue(option)))
     },
-    findOptions(value) {
-      let res = []
+    getExactValues(value) {
+      let v = Array.isArray(value) ? value : [value]
 
-      value.forEach(y => {
-        let options = []
-    
+      return v.reduce((a, c) => {
+        if (this.options.some(x => isDeepEqual(this.getValue(x), c))) {
+          a.push(c)
+        }
+        return a
+      }, [])
+    },
+    getExactOptions(value) {
+      return value.reduce((a, c) => {
         this.options.forEach(x => {
-          if (isDeepEqual(this.getValue(x), y)) { options.push(x) }
+          if (isDeepEqual(this.getValue(x), c)) {
+            a.push(x)
+          }
         })
-
-        if (options.length > 0) { res = res.concat(options) }
-      })
-      return res
+        return a
+      }, [])
     },
     getValue(option) {
       return isObject(option) && option.hasOwnProperty('value')
@@ -247,10 +252,6 @@ export default {
     getName(option) {
       return isObject(option) && option.hasOwnProperty('name')
         ? option.name : option
-    },
-    realEqual(a, b, fn = this.getValue) {
-      /* eslint-disable no-self-compare */
-      return isDeepEqual(fn(a), fn(b))
     }
   }
 }

@@ -1,1 +1,19 @@
-
+.sw-checkbox
+    display inline-block
+    &.disable .sw-checkbox__text, &.disable .sw-icon
+        color $grey !important
+    .sw-checkbox__text
+        padding 0 $medium-gutter
+        height $large-gutter
+        line-height $large-gutter
+        font-size $common-size
+        outline none
+        width 100%
+        background transparent
+        white-space nowrap
+    .sw-icon, .sw-checkbox__text
+        transition .3s $common-transition
+&:not(.disable)
+    .sw-checkbox
+        &:hover:not(.disable)
+            cursor pointer
