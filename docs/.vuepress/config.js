@@ -4,6 +4,14 @@ module.exports = {
     dest: './docs/.vuepress/dist',   // 设置输出目录
     base: '/skywalker/',
     port: 8080, //端口
+    configureWebpack: {
+      resolve: {
+        extensions: ['.js', '.vue'],
+        alias: {
+          'vue$': 'vue/dist/vue.common.js'
+        }
+      },
+    },
     themeConfig: { //主题配置
       // 添加导航栏
       nav: [
@@ -28,7 +36,8 @@ module.exports = {
             'modal',
             'popover',
             'button',
-            'pagination'
+            'pagination',
+            'notification'
           ]
         },
         {

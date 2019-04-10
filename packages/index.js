@@ -9,6 +9,7 @@ import Popover from './components/popover/index.js'
 import Button from './components/button/index.js'
 import Ripple from './directives/ripple/index.js'
 import Pagination from './components/pagination/index.js'
+import Notification from './components/notification/index'
 
 const components = [
   Icon,
@@ -20,7 +21,8 @@ const components = [
   Modal,
   Popover,
   Button,
-  Pagination
+  Pagination,
+  Notification
 ]
 
 const directives = [
@@ -34,6 +36,7 @@ const install = function (Vue) {
   directives.forEach(directive => {
     Vue.directive(directive.name, directive)
   })
+  Vue.prototype.$notify = Notification;
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
