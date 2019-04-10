@@ -7,6 +7,8 @@ import ScrollArea from './components/scrollArea/index.js'
 import Modal from './components/modal/index.js'
 import Popover from './components/popover/index.js'
 import Button from './components/button/index.js'
+import Checkbox from './components/checkbox/index.js'
+import CheckboxGroup from './components/checkboxGroup/index.js'
 import Ripple from './directives/ripple/index.js'
 import Pagination from './components/pagination/index.js'
 import Notification from './components/notification/index'
@@ -22,7 +24,9 @@ const components = [
   Popover,
   Button,
   Pagination,
-  Notification
+  Notification,
+  Checkbox,
+  CheckboxGroup
 ]
 
 const directives = [
@@ -36,7 +40,7 @@ const install = function (Vue) {
   directives.forEach(directive => {
     Vue.directive(directive.name, directive)
   })
-  Vue.prototype.$notify = Notification;
+  Vue.prototype.$notify = Notification
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -51,10 +55,11 @@ export default {
   Input,
   Select,
   ScrollArea,
-  Ripple,
   Popover,
   Modal,
   Button,
-  Ripple,
-  Pagination
+  Pagination,
+  Checkbox,
+  CheckboxGroup,
+  Ripple
 }

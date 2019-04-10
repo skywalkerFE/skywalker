@@ -18,12 +18,14 @@ export default {
       if (this.rules === void 0) {
         return
       }
+      this.isDirty = true
       this.validate(v)
     },
     value(v) {
       if (this.forceCheck !== void 0 || this.rules === void 0) {
         return
       }
+      this.isDirty = true
       this.validate(v)
     }
   },
@@ -59,7 +61,7 @@ export default {
     },
 
     validate(val = this.validateValue) {
-      if (!this.isDirty || !this.rules || this.rules.length === 0) {
+      if (!this.rules || this.rules.length === 0) {
         return
       }
 

@@ -1,12 +1,16 @@
 export default {
   name: 'swIcon',
-  
   props: {
     name: String,
     color: String,
+    primary: Boolean,
+    negative: Boolean,
+    positive: Boolean,
+    warning: Boolean,
+    grey: Boolean,
+    lightGrey: Boolean,
     size: String
   },
-  
   computed: {
     classes() {
       let cls
@@ -17,16 +21,19 @@ export default {
       } else {
         cls = 'material-icons'
       }
-  
       return {
-        [cls]: true
+        [cls]: true,
+        'color-primary': this.primary,
+        'color-negative': this.negative,
+        'color-positive': this.positive,
+        'color-warning': this.warning,
+        'color-grey': this.grey,
+        'color-light-grey': this.lightGrey,
       }
     },
-  
     content() {
       return this.name || ' '
     },
-  
     style() {
       return {
         fontSize: this.size || void 0,
@@ -34,7 +41,6 @@ export default {
       }
     }
   },
-  
   render(h) {
     return h('i', {
       staticClass: 'sw-icon',
