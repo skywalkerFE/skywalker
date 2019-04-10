@@ -1,6 +1,6 @@
-.sw-notification-fade-enter-active, .sw-notification-fade-leave-active
-  transition all .5s
-.sw-notification-fade-enter, .sw-notification-fade-leave-to
+.sw-notification-fade-enter
+  transform translateX(100%)
+.sw-notification-fade-leave-active
   transform translateX(100%)
   opacity 0
 .sw-notification
@@ -12,9 +12,10 @@
   background #fff
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1)
   border 1px solid #ebeef5
+  transition opacity .5s, transform .5s, left .5s, right .5s, top 0.5s, bottom .5s
   overflow hidden
   right 16px
-  bottom 16px
+  z-index: 999
   .title
     font-weight 700
     font-size 16px

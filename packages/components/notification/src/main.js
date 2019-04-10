@@ -16,17 +16,46 @@
 //     </transition>
 //   </div>
 // </template>
-
+import Vnode, { isVNode } from '../../../utils/vdom'
 export default {
   name: 'swNotification',
   data () {
     return {
-      show: false
+      show: false,
+      verticalOffset: 0,
+      onClose: null,
+      position: 'top-right',
+      title: '',
+      content: '',
+      slot: null,
+      background: '#fff',
+      closeColor: '#909399'
     }
   },
   methods: {
     handleBtn() {
-      this.show = !this.show
+      this.show = false
+      if (typeof this.onClose === 'function') {
+        this.onClose();
+      }
+    }
+  },
+  computed: {
+    verticalProperty() {
+      return /^top-/.test(this.position) ? 'top' : 'bottom';
+    },
+
+    positionStyle() {
+      return {
+        [this.verticalProperty]: `${ this.verticalOffset }px`,
+      };
+    },
+    getVnode() {
+      if (isVNode(this.slot)) {
+        return this.slot
+      }
+      console.error('Please check your Vnode writing')
+      return null
     }
   },
   render(h) {
@@ -36,15 +65,17 @@ export default {
       }
     }, [this.show ? h('div', {
             class: 'sw-notification',
+            style: Object.assign(this.positionStyle, { background: this.background })
           }, [
-            h('h2', {
+            this.getVnode ? '' : h('h2', {
               class: 'title'
-            }, '提示'),
-            h('div', {
+            }, this.title),
+            this.getVnode ? this.getVnode : h('div', {
               class: 'content'
-            },'这是一段内容'),
+            },this.content),
             h('div', {
-              class: 'close'
+              class: 'close',
+              style: { color: this.closeColor },
             }, [h('div', {
                   class: 'material-icons',
                   on: {
@@ -55,7 +86,7 @@ export default {
                 }, 'close')])
           ])
     
-        : ''] )
+        : void 0] )
   }
 }
 
