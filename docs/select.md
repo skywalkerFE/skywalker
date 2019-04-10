@@ -42,7 +42,7 @@ v-model返回去重后的value组成的数组，因为兼容undefined，所以�
 ```js
 export default {
   data: ()=>({
-    val:[],
+    val:[undefined],
     options:[
       undefined,
       {name:'option-undefined',value:undefined},
@@ -100,7 +100,7 @@ export default {
 <script>
 export default {
   data: ()=>({
-    val0:[],val1:[],val2:[],val3:[],val4:[],val5:[],val6:[],val7:[],val8:[],val9:['5条/页'],val:[],
+    val0:[],val1:[],val2:[],val3:[],val4:[],val5:[],val6:[],val7:[],val8:[],val9:['5条/页'],val:[undefined],
     options:[
       undefined,
       {name:'option-undefined',value:undefined},
@@ -156,7 +156,7 @@ export default {
 ``` js
 export default {
   data: ()=>({
-    val0:[],val1:[],val2:[],val3:[],val4:[],val5:[],val6:[],val7:[],val8:[],val9:['5条/页'],val:[],
+    val0:[],val1:[],val2:[],val3:[],val4:[],val5:[],val6:[],val7:[],val8:[],val9:['5条/页'],
     options:[
       undefined,
       {name:'option-undefined',value:undefined},
@@ -170,12 +170,7 @@ export default {
     ],
     pages:['5条/页','10条/页','20条/页','30条/页','40条/页'],
     rules:[val => val.length>0 || '必填项']
-  }),
-  watch:{
-    val(v){
-      console.log(v)
-    }
-  }
+  })
 }
 ```
 

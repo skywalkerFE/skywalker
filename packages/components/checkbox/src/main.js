@@ -1,137 +1,121 @@
-import Field from '../../field'
-import { isDeepEqual, isObject } from '../../../utils/is'
-import { deduplicate } from '../../../utils/deduplicate'
+import Item from '../../item'
+import { isDeepEqual } from '../../../utils/is'
 
 export default {
   name: 'swCheckbox',
-  mixins: [Field], // focused,disabled
+  components: { Item },
   props: {
-    multiple: Boolean,
-    value: String | Array,
-    options: Array
+    value: Boolean | Array,
+    label: String,
+    val: {
+      required: false
+    },
+    disabled: Boolean,
+    color: String,
+    primary: Boolean,
+    negative: Boolean,
+    positive: Boolean,
+    warning: Boolean,
+    leftLabel: Boolean,
+    colorLabel: Boolean,
+    keepColor: Boolean
   },
-  data: () => ({}),
+  data: () => ({
+    parent: void 0
+  }),
   computed: {
-    innerValue: {
+    model() {
+      return this.parent === void 0 ? this.value : this.parent.value
+    },
+    parentDisabled() {
+      return this.parent && this.parent.disabled
+    },
+    checked: {
       get() {
-        let value = this.findOptions(deduplicate(this.value))
-
-        return value
+        return this.booleanMode ? this.model : this.getChecked(this.val)
       },
       set(val) {
-        this.$emit(
+        let self = this.parent === void 0 ? this : this.parent
+
+        self.$emit(
           'input',
-          deduplicate(val.map(x => this.getValue(x)))
+          this.formatValue(val)
         )
       }
     },
-    innerOptions() {
-      return this.options
+    innerValue() {
+      return Array.isArray(this.model) ? this.model : [this.model]
+    },
+    booleanMode() {
+      return this.val === void 0
     }
   },
-  watch: {
-    options() {
-      this.innerValue = this.findOptions(deduplicate(this.value))
-    }
-  },
+  watch: {},
   methods: {
-    getInner(h) {
-      let getOptions = h => {
-        if (this.innerOptions.length) {
-          return this.innerOptions.map(option => h('sw-item', {
-            class: {
-              selected: this.checkSelected(option)
-            },
-            nativeOn: {
-              click: () => {
-                this.innerValue = this.formatValue(option)
-              }
-            },
-            scopedSlots: {
-              default: () => [h('div', {
-                staticClass: 'sw-select__option'
-              }, String(this.getName(option)))]
-            }
-          }))
-        } else {
-          return [h('sw-item', {
-            scopedSlots: {
-              default: () => [h('div', {
-                staticClass: 'sw-select__option no-options'
-              }, 'no options')]
-            }
-          })]
-        }
-      }
-
-      return [h('sw-item', {
-        staticClass: 'flex-auto',
-        props: {
-          wrap: true
-        },
-        scopedSlots: {
-          default: () => []
-        }
-      }), h('div', {
-        ref: 'selectOptions',
-        staticClass: 'sw-select__options common-shadow'
-      }, [h('sw-scroll-area', {
-        scopedSlots: {
-          default: () => getOptions(h)
-        }
-      })
-      ])]
+    getChecked(val) {
+      return this.innerValue.some(x => isDeepEqual(x, val))
     },
-    formatValue(option, ope) {
-      let duplicated = false
+    formatValue(checked) {
+      if (this.booleanMode) { return checked }
       let res = []
-
-      if (this.multiple) {
-        this.innerValue.forEach(x => {
-          if (this.realEqual(x, option)) {
-            duplicated = true
-          } else {
-            res.push(x)
-          }
-        })
-      } else if (ope === 'remove') { duplicated = true }
-      return duplicated ? res : res.concat(option)
-    },
-    checkSelected(option) {
-      let selected = false
 
       this.innerValue.forEach(x => {
-        if (this.realEqual(x, option)) {
-          selected = true
+        if (!isDeepEqual(x, this.val)) {
+          res.push(x)
         }
       })
-      return selected
-    },
-    findOptions(value) {
-      let res = []
-
-      value.forEach(y => {
-        let options = []
-    
-        this.options.forEach(x => {
-          if (isDeepEqual(this.getValue(x), y)) { options.push(x) }
-        })
-
-        if (options.length > 0) { res = res.concat(options) }
-      })
+      if (checked) { res.push(this.val) }
       return res
     },
-    getValue(option) {
-      return isObject(option) && option.hasOwnProperty('value')
-        ? option.value : option
-    },
-    getName(option) {
-      return isObject(option) && option.hasOwnProperty('name')
-        ? option.name : option
-    },
-    realEqual(a, b, fn = this.getValue) {
-      /* eslint-disable no-self-compare */
-      return isDeepEqual(fn(a), fn(b))
-    }
+  },
+  render(h) {
+    let checked = this.checked
+    let colorLabel = checked && this.colorLabel
+    let colorCheckbox = checked || this.keepColor
+    let getLabel = () => [h('div', {
+      staticClass: 'sw-checkbox__text margin-min',
+      class: {
+        'color-primary': colorLabel ? this.primary : void 0,
+        'color-negative': colorLabel ? this.negative : void 0,
+        'color-positive': colorLabel ? this.positive : void 0,
+        'color-warning': colorLabel ? this.warning : void 0
+      },
+      style: {
+        color: colorLabel ? this.color : void 0
+      }
+    }, this.label)]
+
+    return h('sw-item', {
+      staticClass: 'sw-checkbox',
+      ref: 'checkbox',
+      class: {
+        disable: this.disabled || this.parentDisabled
+      },
+      nativeOn: {
+        click: () => {
+          if (this.disabled) { return }
+          this.checked = !checked
+        }
+      },
+      scopedSlots: {
+        before: this.label && this.leftLabel ? getLabel : void 0,
+        default: () => [h('sw-icon', {
+          staticClass: 'margin-min',
+          style: {
+            opacity: checked ? 1 : 0.6
+          },
+          props: {
+            size: '20px',
+            name: checked ? 'check_box' : 'check_box_outline_blank',
+            color: colorCheckbox ? this.color : void 0,
+            primary: colorCheckbox ? this.primary : void 0,
+            negative: colorCheckbox ? this.negative : void 0,
+            positive: colorCheckbox ? this.positive : void 0,
+            warning: colorCheckbox ? this.warning : void 0
+          }
+        })],
+        after: this.label && !this.leftLabel ? getLabel : void 0
+      }
+    })
   }
 }
