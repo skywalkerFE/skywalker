@@ -2,12 +2,12 @@ import Item from '../../item'
 import { isDeepEqual } from '../../../utils/is'
 
 export default {
-  name: 'swCheckbox',
+  name: 'swRadio',
   components: { Item },
   props: {
-    value: Boolean | Array,
+    value: {},
     val: {
-      required: false
+      required: true
     },
     label: String,
     disabled: Boolean,
@@ -32,48 +32,30 @@ export default {
     },
     checked: {
       get() {
-        return this.booleanMode ? this.model : this.getChecked(this.val)
+        return this.getChecked(this.val)
       },
-      set(val) {
+      set() {
         let self = this.parent === void 0 ? this : this.parent
 
         self.$emit(
           'input',
-          this.formatValue(val)
+          this.val
         )
       }
-    },
-    innerValue() {
-      return Array.isArray(this.model) ? this.model : [this.model]
-    },
-    booleanMode() {
-      return this.val === void 0
     }
   },
   watch: {},
   methods: {
     getChecked(val) {
-      return this.innerValue.some(x => isDeepEqual(x, val))
-    },
-    formatValue(checked) {
-      if (this.booleanMode) { return checked }
-      let res = []
-
-      this.innerValue.forEach(x => {
-        if (!isDeepEqual(x, this.val)) {
-          res.push(x)
-        }
-      })
-      if (checked) { res.push(this.val) }
-      return res
+      return isDeepEqual(this.model, val)
     },
   },
   render(h) {
     let checked = this.checked
     let colorLabel = checked && this.colorLabel
-    let colorCheckbox = checked || this.keepColor
+    let colorRadio = checked || this.keepColor
     let getLabel = () => [h('div', {
-      staticClass: 'sw-checkbox__text margin-min',
+      staticClass: 'sw-radio__text margin-min',
       class: {
         'color-primary': colorLabel ? this.primary : void 0,
         'color-negative': colorLabel ? this.negative : void 0,
@@ -86,15 +68,15 @@ export default {
     }, this.label)]
 
     return h('sw-item', {
-      staticClass: 'sw-checkbox',
-      ref: 'checkbox',
+      staticClass: 'sw-radio',
+      ref: 'radio',
       class: {
         disable: this.disabled || this.parentDisabled
       },
       nativeOn: {
         click: () => {
-          if (this.disabled) { return }
-          this.checked = !checked
+          if (this.disabled || checked) { return }
+          this.checked = true
         }
       },
       scopedSlots: {
@@ -106,12 +88,12 @@ export default {
           },
           props: {
             size: '20px',
-            name: checked ? 'check_box' : 'check_box_outline_blank',
-            color: colorCheckbox ? this.color : void 0,
-            primary: colorCheckbox ? this.primary : void 0,
-            negative: colorCheckbox ? this.negative : void 0,
-            positive: colorCheckbox ? this.positive : void 0,
-            warning: colorCheckbox ? this.warning : void 0
+            name: checked ? 'radio_button_checked' : 'radio_button_unchecked',
+            color: colorRadio ? this.color : void 0,
+            primary: colorRadio ? this.primary : void 0,
+            negative: colorRadio ? this.negative : void 0,
+            positive: colorRadio ? this.positive : void 0,
+            warning: colorRadio ? this.warning : void 0
           }
         })],
         after: this.label && !this.leftLabel ? getLabel : void 0

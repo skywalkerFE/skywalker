@@ -1,0 +1,19 @@
+.sw-radio
+    display inline-block
+    &.disable .sw-radio__text, &.disable .sw-icon
+        color $grey !important
+    .sw-radio__text
+        padding 0 $medium-gutter
+        height $large-gutter
+        line-height $large-gutter
+        font-size $common-size
+        outline none
+        width 100%
+        background transparent
+        white-space nowrap
+    .sw-icon, .sw-radio__text
+        transition .3s $common-transition
+&:not(.disable)
+    .sw-radio
+        &:hover:not(.disable)
+            cursor pointer

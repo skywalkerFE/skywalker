@@ -9,9 +9,11 @@ import Popover from './components/popover/index.js'
 import Button from './components/button/index.js'
 import Checkbox from './components/checkbox/index.js'
 import CheckboxGroup from './components/checkboxGroup/index.js'
-import Ripple from './directives/ripple/index.js'
+import Radio from './components/radio/index.js'
+import RadioGroup from './components/radioGroup/index.js'
 import Pagination from './components/pagination/index.js'
-import Notification from './components/notification/index'
+import Notification from './components/notification/index.js'
+import Ripple from './directives/ripple/index.js'
 
 const components = [
   Icon,
@@ -26,7 +28,9 @@ const components = [
   Pagination,
   Notification,
   Checkbox,
-  CheckboxGroup
+  CheckboxGroup,
+  Radio,
+  RadioGroup
 ]
 
 const directives = [
@@ -61,5 +65,7 @@ export default {
   Pagination,
   Checkbox,
   CheckboxGroup,
+  Radio,
+  RadioGroup,
   Ripple
 }
