@@ -2,14 +2,16 @@ import Field from '../../field'
 import ShuttleMixin from '../../../mixins/shuttle'
 
 export default {
-  name: 'swCheckboxGroup',
+  name: 'swRadioGroup',
   mixins: [Field, ShuttleMixin], // focused,disabled,shuttleRef
   props: {
-    value: Boolean | Array
+    value: {
+      required: true
+    }
   },
   data: () => ({
     innerPointer: true,
-    shuttleRef: 'checkbox'
+    shuttleRef: 'radio'
   }),
   computed: {},
   watch: {},

@@ -128,4 +128,3 @@ Name|Required|direction|
 :------:|:------:|:------:|
 before|false|置于default左侧的插槽|
 after|false|置于default右侧的插槽|
-default|false|置于中间的插槽|

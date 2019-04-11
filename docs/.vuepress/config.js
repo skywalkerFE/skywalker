@@ -37,7 +37,9 @@ module.exports = {
             'popover',
             'button',
             'pagination',
-            'notification','checkbox'
+            'notification',
+            'checkbox',
+            'radio'
           ]
         },
         {
