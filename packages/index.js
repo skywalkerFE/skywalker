@@ -1,3 +1,5 @@
+import './css/index.styl'
+
 import Icon from './components/icon/index.js'
 import Item from './components/item/index.js'
 import Field from './components/field/index.js'
@@ -26,7 +28,6 @@ const components = [
   Popover,
   Button,
   Pagination,
-  Notification,
   Checkbox,
   CheckboxGroup,
   Radio,
@@ -67,5 +68,6 @@ export default {
   CheckboxGroup,
   Radio,
   RadioGroup,
+  Notification,
   Ripple
 }

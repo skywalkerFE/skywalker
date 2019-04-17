@@ -1,9 +1,9 @@
-import Field from './src/main.js'
+import Item from './src/main.js'
 
 const install = function (Vue) {
-  Vue.component(Field.name, Field)
+  Vue.component(Item.name, Item)
 }
 
-Field.install = install
+Item.install = install
 
-export default Field
+export default Item
