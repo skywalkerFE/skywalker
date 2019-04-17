@@ -7,7 +7,8 @@ import 'highlight.js/styles/atom-one-dark.css'
 import 'material-icons/iconfont/material-icons.css'
 import '../../packages/css/index.styl'
 import skywalker from '../../packages/index'
-
+// import '../../lib/skywalker.min.css'
+// import skywalker from '../../lib/skywalker.esm.min.js'
 export default ({
   Vue
 }) => {
