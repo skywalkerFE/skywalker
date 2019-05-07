@@ -39,7 +39,8 @@ module.exports = {
             'pagination',
             'notification',
             'checkbox',
-            'radio'
+            'radio',
+            'upload'
           ]
         },
         {

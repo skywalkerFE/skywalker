@@ -1,0 +1,40 @@
+.sw-upload
+  display inline-block
+  .sw-upload__input
+    display none
+  .sw-upload__file__list
+    ul
+      padding 0
+      margin 0
+      margin-top 10px
+      list-style-type none
+      li
+        margin-bottom 5px
+        color #606266
+        transition color 1s, background-color 1s
+        &:hover
+          color #0070d2
+          background-color #f5f7fa
+        .icon
+          position relative
+          top 4px
+          margin-right 5px
+        .close
+          float right
+          cursor pointer
+        .percent
+          float right
+        .progress
+          width 0
+          height 3px
+          margin-top 3px
+          margin-left 2px
+          background-color #0070d2
+          border-radius 1px
+          transition width 1s
+        .fade-enter-active,
+        .fade-leave-active
+          transition opacity .5s
+        .fade-enter,
+        .fade-leave-to
+          opacity 0

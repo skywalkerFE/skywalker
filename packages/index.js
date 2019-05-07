@@ -9,6 +9,7 @@ import Popover from './components/popover/index.js'
 import Button from './components/button/index.js'
 import Checkbox from './components/checkbox/index.js'
 import CheckboxGroup from './components/checkboxGroup/index.js'
+import Upload from './components/upload/index.js'
 import Radio from './components/radio/index.js'
 import RadioGroup from './components/radioGroup/index.js'
 import Pagination from './components/pagination/index.js'
@@ -30,7 +31,8 @@ const components = [
   Checkbox,
   CheckboxGroup,
   Radio,
-  RadioGroup
+  RadioGroup,
+  Upload
 ]
 
 const directives = [
@@ -67,5 +69,6 @@ export default {
   CheckboxGroup,
   Radio,
   RadioGroup,
-  Ripple
+  Ripple,
+  Upload
 }
