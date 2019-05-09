@@ -2,11 +2,21 @@
 ---
 ### 基本用法
 <common-decorator>
-  <div>
+  <div style="width:300px">
     <sw-item :to="to">
       <sw-icon slot="before" name="alarm"></sw-icon>
-      <div slot="after">一些文本</div>
-      <div>inner</div>
+      <sw-icon slot="after" name="arrow_forward"></sw-icon>
+      <div>go to icon</div>
+    </sw-item>
+    <sw-item :to="to" center>
+      <sw-icon slot="before" name="alarm"></sw-icon>
+      <sw-icon slot="after" name="arrow_forward"></sw-icon>
+      <div>go to icon</div>
+    </sw-item>
+    <sw-item :to="to" end>
+      <sw-icon slot="before" name="alarm"></sw-icon>
+      <sw-icon slot="after" name="arrow_forward"></sw-icon>
+      <div>go to icon</div>
     </sw-item>
   </div>
 </common-decorator>
@@ -14,7 +24,9 @@
 <script>
 export default {
   data: ()=>({
-    to:'icon.html'
+    to:'icon.html',
+    collapse1:false,
+    collapse2:false
   })
 }
 </script>
@@ -22,8 +34,18 @@ export default {
 ``` html
     <sw-item :to="to">
       <sw-icon slot="before" name="alarm"></sw-icon>
-      <div slot="after">一些文本</div>
-      <div>inner</div>
+      <sw-icon slot="after" name="arrow_forward"></sw-icon>
+      <div>go to icon</div>
+    </sw-item>
+    <sw-item :to="to" center>
+      <sw-icon slot="before" name="alarm"></sw-icon>
+      <sw-icon slot="after" name="arrow_forward"></sw-icon>
+      <div>go to icon</div>
+    </sw-item>
+    <sw-item :to="to" end>
+      <sw-icon slot="before" name="alarm"></sw-icon>
+      <sw-icon slot="after" name="arrow_forward"></sw-icon>
+      <div>go to icon</div>
     </sw-item>
 ```
 
@@ -40,6 +62,8 @@ export default {
 Name|Type|Required||
 :------:|:------:|:------:|:------:|
 to|String\|Object|false|<a>https://router.vuejs.org/zh/guide/essentials/navigation.html</a>|
+center|Boolean|false|中间部分的内容水平居中|
+end|Boolean|false|中间部分的内容水平居右|
 
 ### 插槽
 

@@ -1,11 +1,13 @@
 .sw-button
     position relative
-    color $primary
+    height fit-content
     font-size inherit
     font-weight inherit
     border none
     padding 0
     outline none
+    .sw-item
+        z-index 1
     &.underline
         &:before
             border-width 0 0 1px 0
@@ -17,7 +19,7 @@
     &.fill
         color #fff
         border-radius $border-radius
-        background-color $primary
+        // background-color $primary
         &.primary
             background-color $primary
         &.negative
@@ -42,8 +44,12 @@
     .sw-item
         &:not(.round-slot)
             padding 0 $common-gutter - $min-gutter
-        &.round-slot
-            padding $min-gutter
+        // &.round-slot
+        //     padding $min-gutter
+        &.mini
+            padding 0
+    .sw-button__inner
+        justify-content inherit
     .sw-button__before, .sw-button__inner, .sw-button__after
         min-height $large-gutter
     &.round

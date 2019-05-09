@@ -5,7 +5,9 @@ export default {
     hideBefore: Boolean,
     hideDefault: Boolean,
     hideAfter: Boolean,
-    to: String | Object
+    to: String | Object,
+    center: Boolean,
+    end: Boolean
   },
   data: () => ({}),
   computed: {
@@ -47,10 +49,13 @@ export default {
         }, [this.$scopedSlots.before()]) : void 0,
   
         this.$scopedSlots.default !== void 0 ? h('div', {
-          staticClass: 'sw-item__inner flex items-center',
+          staticClass: 'sw-item__inner flex items-center items-end',
           class: {
             hide: this.hideDefault,
-            'no-wrap': !this.wrap
+            'no-wrap': !this.wrap,
+            'justify-center': this.center,
+            'justify-end': this.end
+
           }
         }, [this.$scopedSlots.default()]) : void 0,
   

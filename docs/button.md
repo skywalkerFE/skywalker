@@ -6,39 +6,39 @@
     <sw-button style="margin:10px">
     DEFAULT
     </sw-button>
-    <sw-button style="margin:10px" no-hover>
-    NO HOVER
+    <sw-button style="margin:10px" primary hover>
+    PRIMARY
     </sw-button>
-    <sw-button style="margin:10px" positive round>
+    <sw-button style="margin:10px" positive round hover>
     ROUND
     </sw-button>
-    <sw-button style="margin:10px" underlined warning v-ripple>
+    <sw-button style="margin:10px" underlined warning hover v-ripple>
     UNDERLINED
     </sw-button>
-    <sw-button style="margin:10px" positive bordered v-ripple>
+    <sw-button style="margin:10px" positive bordered hover v-ripple>
     BORDERED
     </sw-button>
-    <sw-button style="margin:10px" bordered disabled round>
+    <sw-button style="margin:10px" bordered disabled hover round>
     DISABLED
     </sw-button>
-    <sw-button style="margin:10px" color="purple" bordered shadow v-ripple to="ripple.html">
+    <sw-button style="margin:10px;width:250px" center color="purple" bordered shadow hover v-ripple to="ripple.html">
     GO TO RIPPLE
     </sw-button>
-    <sw-button style="margin:10px" warning filled shadow v-ripple>
+    <sw-button style="margin:10px" warning filled shadow hover v-ripple>
     FILLED
     </sw-button>
-    <sw-button style="margin:10px" color="purple" filled v-ripple>
+    <sw-button style="margin:10px" color="purple" filled hover v-ripple>
     COLORED
     </sw-button>
-    <sw-button style="margin:10px" negative bordered shadow v-ripple>
+    <sw-button style="margin:10px" negative bordered shadow hover mini v-ripple>
     <sw-icon name="alarm" slot="before"></sw-icon>
-    BEFORE SLOT
+    MINI
     </sw-button>
-    <sw-button style="margin:10px" positive filled shadow v-ripple>
+    <sw-button style="margin:10px" positive filled shadow hover v-ripple>
     <sw-icon name="alarm" slot="after"></sw-icon>
     AFTER SLOT
     </sw-button>
-    <sw-button style="margin:10px" round negative filled shadow v-ripple>
+    <sw-button style="margin:10px" round negative filled shadow hover v-ripple>
     <sw-icon name="alarm" slot="round"></sw-icon>
     </sw-button>
   </div>
@@ -69,7 +69,7 @@ export default {
     <sw-button style="margin:10px" bordered disabled round>
     DISABLED
     </sw-button>
-    <sw-button style="margin:10px" negative bordered shadow v-ripple to="ripple.html">
+    <sw-button style="margin:10px;width:250px" center negative bordered shadow v-ripple to="ripple.html">
     GO TO RIPPLE
     </sw-button>
     <sw-button style="margin:10px" warning filled shadow v-ripple>
@@ -113,7 +113,10 @@ warning|Boolean|false|默认warning配色|
 color|String|false|自定义按钮配色|
 round|Boolean|false|圆角修饰，不支持下划线样式|
 shadow|Boolean|false|阴影修饰，不支持默认和下划线样式|
-noHover|Boolean|false|hover效果控制器|
+hover|Boolean|false|hover效果控制器|
+mini|Boolean|false|是否缩小展示（去除左右两边空间）|
+center|Boolean|false|中间部分的内容水平居中|
+end|Boolean|false|中间部分的内容水平居右|
 v-ripple|Boolean|false|波纹动画，具体配置参考 自定义指令->ripple|
 
 ### 插槽

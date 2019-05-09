@@ -17,6 +17,9 @@ $common-shadow = 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px 
 $deep-shadow = 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px rgba(0,0,0,.14), 0 1px 14px rgba(0,0,0,.12)
 $common-transition = cubic-bezier(.25,.8,.5,1)
 
+div
+    position relative
+
 .hide
     display none !important
 
@@ -77,6 +80,87 @@ body
     background-color $grey
 .bg-light-grey
     background-color $light-grey
+
+
+
+.border-primary
+    &:before
+        content ''
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        border-radius inherit
+        border-width 1px
+        border-style solid
+        border-color $primary
+        transition .6s $common-transition
+.border-negative
+    &:before
+        content ''
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        border-radius inherit
+        border-width 1px
+        border-style solid
+        border-color $negative
+        transition .6s $common-transition
+.border-positive
+    &:before
+        content ''
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        border-radius inherit
+        border-width 1px
+        border-style solid
+        border-color $positive
+        transition .6s $common-transition
+.border-warning
+    &:before
+        content ''
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        border-radius inherit
+        border-width 1px
+        border-style solid
+        border-color $warning
+        transition .6s $common-transition
+.border-grey
+    &:before
+        content ''
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        border-radius inherit
+        border-width 1px
+        border-style solid
+        border-color $grey
+        transition .6s $common-transition
+.border-light-grey
+    &:before
+        content ''
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        border-radius inherit
+        border-width 1px
+        border-style solid
+        border-color $light-grey
+        transition .6s $common-transition
 
 .hover-color-primary:hover
     color $primary

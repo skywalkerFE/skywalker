@@ -15,8 +15,11 @@ export default {
     warning: Boolean,
     round: Boolean,
     shadow: Boolean,
-    noHover: Boolean,
-    to: String | Object
+    hover: Boolean,
+    mini: Boolean,
+    to: String | Object,
+    center: Boolean,
+    end: Boolean
   },
   data: () => ({
     mouseover: false
@@ -55,14 +58,17 @@ export default {
       h('sw-item', {
         staticClass: 'flex-auto',
         class: {
-          'round-slot': this.$scopedSlots.round
+          'round-slot': this.$scopedSlots.round,
+          mini: this.mini
         },
         style: {
           'z-index': 1,
           cursor: 'pointer',
         },
         props: {
-          to: this.to
+          to: this.to,
+          center: this.center,
+          end: this.end
         },
         scopedSlots: this.$scopedSlots.round !== void 0
           ? {
@@ -89,7 +95,7 @@ export default {
       h('div', {
         staticClass: 'sw-mask',
         class: {
-          invisible: !this.disabled && (!this.mouseover || this.noHover)
+          invisible: !this.hover || !this.disabled && !this.mouseover
         },
         style: {
           'z-index': this.disabled ? 9 : 0,

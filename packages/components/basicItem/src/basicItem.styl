@@ -1,0 +1,53 @@
+.sw-basic-item
+    position relative
+    min-width min-content
+    border-radius inherit
+    .sw-basic-item__main
+        position relative
+        height inherit
+    .sw-basic-item__inner
+        position relative
+        height inherit
+        z-index 1
+        padding 0 $common-gutter
+    &.split
+        &:before
+            content ''
+            position absolute
+            top 0
+            right 0
+            bottom 0
+            left 0
+            border-radius inherit
+            border-top 1px solid $shadow-grey
+            border-bottom 1px solid $shadow-grey
+        + .sw-basic-item
+            &.split
+                &:before
+                    border-top none
+        .sw-basic-item
+            &.split
+                &:before
+                    border-bottom none
+    .sw-basic-item__main
+        position relative
+        border-radius inherit
+        &.disable
+            color $grey !important
+        .sw-basic-item__content
+            position relative
+            flex auto
+            justify-content inherit
+            &.space-left
+                padding-left $common-gutter
+            &.space-right
+                padding-right $common-gutter
+            .default-content
+                .sw-basic-item__label
+                    font-size 14px
+                .sw-basic-item__sublabel
+                    font-size 12px
+                    color $grey
+    .sw-basic-item__sub
+        overflow hidden
+        transition height .3s $common-transition

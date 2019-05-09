@@ -4,16 +4,19 @@ export default {
     x: Boolean,
     y: Boolean,
     width: String,
-    height: String
+    height: String,
+    stretch: Boolean
   },
   data: () => ({}),
   computed: {
     style() {
       return {
-        'overflow-x': this.x ? 'auto' : void 0,
-        'overflow-y': this.y ? 'auto' : void 0,
+        'overflow-x': this.x ? 'auto' : 'hidden',
+        'overflow-y': this.y ? 'auto' : 'hidden',
+        'max-width': this.width || '100%',
         width: this.width || '100%',
-        'max-height': this.height || '100%'
+        'max-height': this.height || '100%',
+        height: this.stretch && (this.height || '100%')
       }
     }
   },
