@@ -198,10 +198,13 @@ export default {
     getAfter(h) {
       return [h('sw-icon', {
         props: {
-          name: this.focused ? 'keyboard_arrow_up' : 'keyboard_arrow_down',
+          name: 'keyboard_arrow_down',
           size: '20px'
         },
-        staticClass: 'color-grey hover-color-primary'
+        staticClass: 'color-grey hover-color-primary',
+        style: {
+          transform: this.focused ? 'rotate(180deg)' : void 0
+        }
       })]
     },
     formatValue(option, ope) {

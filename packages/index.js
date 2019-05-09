@@ -14,7 +14,10 @@ import CheckboxGroup from './components/checkboxGroup/index.js'
 import Radio from './components/radio/index.js'
 import RadioGroup from './components/radioGroup/index.js'
 import Pagination from './components/pagination/index.js'
+import BasicItem from './components/basicItem/index.js'
 import Notification from './components/notification/index.js'
+import Layout from './components/layout/index.js'
+import Slide from './components/slide/index.js'
 import Ripple from './directives/ripple/index.js'
 
 const components = [
@@ -31,7 +34,10 @@ const components = [
   Checkbox,
   CheckboxGroup,
   Radio,
-  RadioGroup
+  RadioGroup,
+  BasicItem,
+  Layout,
+  Slide
 ]
 
 const directives = [
@@ -68,6 +74,9 @@ export default {
   CheckboxGroup,
   Radio,
   RadioGroup,
+  BasicItem,
   Notification,
+  Layout,
+  Slide,
   Ripple
 }

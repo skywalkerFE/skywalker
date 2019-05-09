@@ -14,7 +14,11 @@ export default {
     disabled: Boolean,
     mini: Boolean,
     label: String,
-    forceCheck: String | Object
+    forceCheck: String | Object,
+    spaceAround: {
+      type: Boolean,
+      default: true
+    }
   },
   data: () => ({
     focused: false
@@ -34,7 +38,8 @@ export default {
     return h('div', {
       staticClass: 'sw-field flex no-wrap items-center',
       class: {
-        disable: this.disabled
+        disable: this.disabled,
+        'space-around': this.spaceAround
       }
     }, [
       this.label !== void 0 ? h('div', {

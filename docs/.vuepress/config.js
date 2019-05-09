@@ -31,6 +31,9 @@ module.exports = {
           children: [
             'icon',
             'item',
+            'basicItem',
+            'slide',
+            'layout',
             'input',
             'select',
             'modal',
