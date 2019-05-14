@@ -26,22 +26,86 @@ $common-transition = cubic-bezier(.25,.8,.5,1)
 .padding
     &-min
         padding $min-gutter
+    &-top-min
+        padding-top $min-gutter
+    &-bottom-min
+        padding-bottom $min-gutter
+    &-left-min
+        padding-left $min-gutter
+    &-right-min
+        padding-right $min-gutter
     &-medium
         padding $medium-gutter
+    &-top-medium
+        padding-top $medium-gutter
+    &-bottom-medium
+        padding-bottom $medium-gutter
+    &-left-medium
+        padding-left $medium-gutter
+    &-right-medium
+        padding-right $medium-gutter
     &-common
         padding $common-gutter
+    &-top-common
+        padding-top $common-gutter
+    &-bottom-common
+        padding-bottom $common-gutter
+    &-left-common
+        padding-left $common-gutter
+    &-right-common
+        padding-right $common-gutter
     &-large
         padding $large-gutter
+    &-top-large
+        padding-top $large-gutter
+    &-bottom-large
+        padding-bottom $large-gutter
+    &-left-large
+        padding-left $large-gutter
+    &-right-large
+        padding-right $large-gutter
 
 .margin
     &-min
         margin $min-gutter
+    &-top-min
+        margin-top $min-gutter
+    &-bottom-min
+        margin-bottom $min-gutter
+    &-left-min
+        margin-left $min-gutter
+    &-right-min
+        margin-right $min-gutter
     &-medium
         margin $medium-gutter
+    &-top-medium
+        margin-top $medium-gutter
+    &-bottom-medium
+        margin-bottom $medium-gutter
+    &-left-medium
+        margin-left $medium-gutter
+    &-right-medium
+        margin-right $medium-gutter
     &-common
         margin $common-gutter
+    &-top-common
+        margin-top $common-gutter
+    &-bottom-common
+        margin-bottom $common-gutter
+    &-left-common
+        margin-left $common-gutter
+    &-right-common
+        margin-right $common-gutter
     &-large
         margin $large-gutter
+    &-top-large
+        margin-top $large-gutter
+    &-bottom-large
+        margin-bottom $large-gutter
+    &-left-large
+        margin-left $large-gutter
+    &-right-large
+        margin-right $large-gutter
 
 body
     font-family Roboto,-apple-system,Helvetica Neue,Helvetica,Arial,sans-serif
@@ -89,10 +153,17 @@ body
         bottom 0
         left 0
         border-radius inherit
-        border-width 1px
-        border-style solid
-        border-color $primary
         transition .6s $common-transition
+    &.around
+        border 1px solid $primary
+    &.top
+        border-top 1px solid $primary
+    &.bottom
+        border-bottom 1px solid $primary
+    &.left
+        border-left 1px solid $primary
+    &.right
+        border-right 1px solid $primary
 .border-negative
     &:before
         content ''
@@ -102,10 +173,17 @@ body
         bottom 0
         left 0
         border-radius inherit
-        border-width 1px
-        border-style solid
-        border-color $negative
         transition .6s $common-transition
+    &.around
+        border 1px solid $negative
+    &.top
+        border-top 1px solid $negative
+    &.bottom
+        border-bottom 1px solid $negative
+    &.left
+        border-left 1px solid $negative
+    &.right
+        border-right 1px solid $negative
 .border-positive
     &:before
         content ''
@@ -115,10 +193,17 @@ body
         bottom 0
         left 0
         border-radius inherit
-        border-width 1px
-        border-style solid
-        border-color $positive
         transition .6s $common-transition
+    &.around
+        border 1px solid $positive
+    &.top
+        border-top 1px solid $positive
+    &.bottom
+        border-bottom 1px solid $positive
+    &.left
+        border-left 1px solid $positive
+    &.right
+        border-right 1px solid $positive
 .border-warning
     &:before
         content ''
@@ -128,10 +213,17 @@ body
         bottom 0
         left 0
         border-radius inherit
-        border-width 1px
-        border-style solid
-        border-color $warning
         transition .6s $common-transition
+    &.around
+        border 1px solid $warning
+    &.top
+        border-top 1px solid $warning
+    &.bottom
+        border-bottom 1px solid $warning
+    &.left
+        border-left 1px solid $warning
+    &.right
+        border-right 1px solid $warning
 .border-grey
     &:before
         content ''
@@ -141,10 +233,17 @@ body
         bottom 0
         left 0
         border-radius inherit
-        border-width 1px
-        border-style solid
-        border-color $grey
         transition .6s $common-transition
+    &.around
+        border 1px solid $grey
+    &.top
+        border-top 1px solid $grey
+    &.bottom
+        border-bottom 1px solid $grey
+    &.left
+        border-left 1px solid $grey
+    &.right
+        border-right 1px solid $grey
 .border-light-grey
     &:before
         content ''
@@ -154,10 +253,17 @@ body
         bottom 0
         left 0
         border-radius inherit
-        border-width 1px
-        border-style solid
-        border-color $light-grey
         transition .6s $common-transition
+    &.around:before
+        border 1px solid $light-grey
+    &.top:before
+        border-top 1px solid $light-grey
+    &.bottom:before
+        border-bottom 1px solid $light-grey
+    &.left:before
+        border-left 1px solid $light-grey
+    &.right:before
+        border-right 1px solid $light-grey
 
 .hover-color-primary:hover
     color $primary

@@ -7,6 +7,7 @@
   "scripts": {
     "style": "node build/css.js > packages/css/index.styl",
     "component": "node build/component.js > component.json",
+    "demo": "cross-env NODE_ENV=production webpack --config build/webpack.demo.config.js",
     "dev": "npm run style && npm run component && rollup --config build/rollup.config.js",
     "dist": "npm run style && npm run component && cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "docs:dev": "node build/css.js > packages/css/index.styl && vuepress dev docs",

@@ -102,7 +102,7 @@ collapseTop、collapseLeft、collapseRight、collapseBottom<br/>
 
 <common-decorator>
   <div style="width:600px;height:300px">
-    <sw-layout :collapseLeft="collapse" leftMin="48" class="border-light-grey">
+    <sw-layout :collapseLeft="collapse" leftMin="48" class="border-light-grey right">
       <sw-layout slot="left">
         <sw-basic-item slot="top" class="bg-grey" mini>
           <sw-item slot="content">

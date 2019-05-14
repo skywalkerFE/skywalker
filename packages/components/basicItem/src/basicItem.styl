@@ -10,7 +10,7 @@
         height inherit
         z-index 1
         padding 0 $common-gutter
-    &.split
+    &.split, &.split + .sw-basic-item
         &:before
             content ''
             position absolute
@@ -20,15 +20,6 @@
             left 0
             border-radius inherit
             border-top 1px solid $shadow-grey
-            border-bottom 1px solid $shadow-grey
-        + .sw-basic-item
-            &.split
-                &:before
-                    border-top none
-        .sw-basic-item
-            &.split
-                &:before
-                    border-bottom none
     .sw-basic-item__main
         position relative
         border-radius inherit
