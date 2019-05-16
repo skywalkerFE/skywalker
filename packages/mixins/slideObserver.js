@@ -21,9 +21,10 @@ export default {
         this.$refs.slide.style[this.target] = this.minSize
       }
     },
-    setStyle() {
+    setStyle(passive) {
       let slideTarget = this.$refs.slide
 
+      if (passive && !slideTarget.style[this.target]) { return }
       slideTarget.style[this.target] = `${this.$refs.observe[this.measureTarget]}px`
       if (this.innerCollapsed) {
         setTimeout(() => {
@@ -54,7 +55,7 @@ export default {
       })
     this.initStyle()
     this.observer = new MutationObserver(() => {
-      this.setStyle()
+      this.setStyle(true)
     })
 
     this.observer.observe(this.$refs.observe, {

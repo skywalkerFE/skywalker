@@ -17,6 +17,11 @@ $common-shadow = 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px 
 $deep-shadow = 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px rgba(0,0,0,.14), 0 1px 14px rgba(0,0,0,.12)
 $common-transition = cubic-bezier(.25,.8,.5,1)
 
+a
+    font-weight unset
+    color unset
+    text-decoration unset
+
 .hide
     display none !important
 
@@ -322,15 +327,6 @@ body
         border-style solid
         border-color $grey
         transition .6s $common-transition
-
-.sw-mask
-    position absolute
-    top 0
-    left 0
-    width 100%
-    height 100%
-    border-radius inherit
-    opacity .1
 
 .common-shadow
     box-shadow 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12)

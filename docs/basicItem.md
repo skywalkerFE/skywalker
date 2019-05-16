@@ -4,16 +4,16 @@
 <common-decorator>
   <div>
     <div style="font-weight:bold;color:grey;margin:20px 0">添加icon、sub-content及跳转</div>
-    <sw-basic-item primary icon="fingerprint" center hover content="router" sub-content="go to icon" :to="to" mini>
+    <sw-basic-item primary icon="fingerprint" center mask content="router" sub-content="go to icon" :to="to" mini>
       <sw-item slot="after">
         <sw-icon name="arrow_forward"></sw-icon>
       </sw-item>
     </sw-basic-item>
     <div style="font-weight:bold;color:grey;margin:20px 0">添加扩展内容、自由设置缩进并分隔下拉内容</div>
-    <sw-basic-item primary icon="alarm" content="expandable" split hover>
-      <sw-basic-item warning color-content icon="alarm" content="not collapsed" indent-level="2" mini :collapsed="false" split hover>
-        <sw-basic-item negative color-content content="custom content" indent-level="5" mini split hover>
-          <sw-basic-item color="purple" color-content indent-level="5" mini disabled hover>
+    <sw-basic-item primary icon="alarm" content="expandable" split mask>
+      <sw-basic-item warning icon="alarm" content="not collapsed" indent-level="2" mini :collapsed="false" split mask disabled>
+        <sw-basic-item negative content="custom content" indent-level="5" mini split mask :ripple="{center:true}">
+          <sw-basic-item color="purple" indent-level="5" mini mask>
             <sw-icon slot="before" name="face"></sw-icon>
             <div slot="content">anything can be filled inside（currently disabled）</div>
             <sw-icon slot="after" name="favorite"></sw-icon>
@@ -34,13 +34,13 @@ export default {
 
 ``` html
     <div>添加icon、sub-content及跳转</div>
-    <sw-basic-item primary color-content center icon="fingerprint" content="content" sub-content="sub-content" :to="to" mini>
+    <sw-basic-item primary center icon="fingerprint" content="content" sub-content="sub-content" :to="to" mini>
     </sw-basic-item>
     <div>添加扩展内容、自由设置缩进并分隔下拉内容</div>
     <sw-basic-item primary icon="alarm" content="expandable" split>
-      <sw-basic-item warning color-content icon="alarm" content="not collapsed" indent-level="2" mini :collapsed="false" split>
-        <sw-basic-item negative color-content content="custom content" indent-level="5" mini split>
-          <sw-basic-item color="purple" color-content indent-level="5" mini disabled>
+      <sw-basic-item warning icon="alarm" content="not collapsed" indent-level="2" mini :collapsed="false" split>
+        <sw-basic-item negative content="custom content" indent-level="5" mini split>
+          <sw-basic-item color="purple" indent-level="5" mini disabled>
             <sw-icon slot="before" name="face"></sw-icon>
             <div slot="content">anything can be filled inside（currently disabled）</div>
             <sw-icon slot="after" name="favorite"></sw-icon>
@@ -69,7 +69,6 @@ negative|Boolean|false|默认negative配色|
 positive|Boolean|false|默认positive配色|
 warning|Boolean|false|默认warning配色|
 color|String|false|自定义配色|
-color-content|Boolean|false|content内容是否染色|
 icon|String|false|自定义icon|
 content|String|false|content内容|
 sub-content|String|false|sub-content内容|

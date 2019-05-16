@@ -15,15 +15,12 @@ export default {
     warning: Boolean,
     round: Boolean,
     shadow: Boolean,
-    hover: Boolean,
     mini: Boolean,
     to: String | Object,
     center: Boolean,
     end: Boolean
   },
-  data: () => ({
-    mouseover: false
-  }),
+  data: () => ({}),
   render(h) {
     return h('button', {
       staticClass: 'sw-button flex no-wrap items-center',
@@ -44,15 +41,7 @@ export default {
         'common-shadow': this.shadow && (this.bordered || this.filled)
       },
       on: this.disabled ? void 0 : {
-        ...this.$listeners,
-        mouseover: e => {
-          this.mouseover = true
-          this.$emit('mouseover', e)
-        },
-        mouseout: e => {
-          this.mouseover = false
-          this.$emit('mouseout', e)
-        }
+        ...this.$listeners
       }
     }, [
       h('sw-item', {
@@ -62,13 +51,16 @@ export default {
           mini: this.mini
         },
         style: {
-          'z-index': 1,
-          cursor: 'pointer',
+          cursor: 'pointer'
         },
         props: {
           to: this.to,
           center: this.center,
-          end: this.end
+          end: this.end,
+          disabled: this.disabled
+        },
+        on: this.disabled ? void 0 : {
+          ...this.$listeners
         },
         scopedSlots: this.$scopedSlots.round !== void 0
           ? {
@@ -91,16 +83,6 @@ export default {
                 staticClass: 'flex no-wrap items-center margin-min sw-button__after'
               }, [this.$scopedSlots.after()])] : void 0
           }
-      }),
-      h('div', {
-        staticClass: 'sw-mask',
-        class: {
-          invisible: !this.hover || !this.disabled && !this.mouseover
-        },
-        style: {
-          'z-index': this.disabled ? 9 : 0,
-          'background-color': this.disabled ? 'transparent' : 'currentColor'
-        }
       })
     ])
   }

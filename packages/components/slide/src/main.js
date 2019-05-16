@@ -6,6 +6,7 @@ export default {
   props: {
     collapsed: Boolean,
     horizontal: Boolean,
+    fit: Boolean,
     min: Number | String
   },
   data: () => ({
@@ -28,8 +29,10 @@ export default {
         ref: 'observe',
         staticClass: `sw-slide__content`,
         class: {
-          'min-width': this.horizontal,
-          'min-height': !this.horizontal
+          'min-width': this.horizontal && !this.fit,
+          'fit-width': this.horizontal && this.fit,
+          'min-height': !this.horizontal && !this.fit,
+          'fit-height': !this.horizontal && this.fit
         }
       }, [this.$scopedSlots.default()])
     ])

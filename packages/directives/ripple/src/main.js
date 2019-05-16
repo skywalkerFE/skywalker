@@ -56,9 +56,9 @@ function showRipple(evt, el, ctx, forceCenter) {
 }
 
 function updateCtx(ctx, { value, modifiers, arg }) {
-  ctx.enabled = value !== false
+  ctx.disabled = value && value.disabled || false
 
-  if (ctx.enabled === true) {
+  if (!ctx.disabled) {
     ctx.modifiers = Object(value) === value
       ? {
         stop: value.stop === true || modifiers.stop === true,
@@ -79,12 +79,12 @@ export default {
     const ctx = {
       modifiers: {},
       click(evt) {
-        if (ctx.enabled === true) {
+        if (!ctx.disabled) {
           showRipple(evt, el, ctx)
         }
       },
       keyup(evt) {
-        if (ctx.enabled === true && evt.keyCode === 13) {
+        if (!ctx.disabled && evt.keyCode === 13) {
           showRipple(evt, el, ctx, true)
         }
       }

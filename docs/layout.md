@@ -113,9 +113,9 @@ collapseTop、collapseLeft、collapseRight、collapseBottom<br/>
           </sw-item>
         </sw-basic-item>
         <sw-scroll-area y stretch>
-          <sw-basic-item primary color-content icon="face" content="primary" split mini hover>
-            <sw-basic-item warning color-content icon="face" content="warning" indent-level="3" mini split hover>
-              <sw-basic-item negative color-content content="negative" indent-level="6" mini split hover>
+          <sw-basic-item primary icon="face" content="primary" split mini mask>
+            <sw-basic-item warning icon="face" content="warning" indent-level="3" mini split mask>
+              <sw-basic-item negative content="negative" indent-level="6" mini split mask>
                 <sw-basic-item v-for="x in 10" indent-level="6" mini>
                   <div slot="content">default</div>
                   <sw-icon slot="after" positive name="favorite"></sw-icon>
@@ -126,7 +126,7 @@ collapseTop、collapseLeft、collapseRight、collapseBottom<br/>
         </sw-scroll-area>
       </sw-layout>
       <sw-layout :collapseTop="collapse">
-        <sw-basic-item slot="top" class="bg-primary" color="#fff" color-content icon="fingerprint" mini>
+        <sw-basic-item slot="top" class="bg-primary" color="#fff" icon="fingerprint" mini>
           <sw-item slot="after">
             <sw-icon name="arrow_forward" color="#fff"></sw-icon>
           </sw-item>
@@ -160,9 +160,9 @@ export default {
           </sw-item>
         </sw-basic-item>
         <sw-scroll-area y stretch bordered>
-          <sw-basic-item primary color-content icon="face" content="primary" split mini hover>
-            <sw-basic-item warning color-content icon="face" content="warning" indent-level="3" mini split hover>
-              <sw-basic-item negative color-content content="negative" indent-level="6" mini split hover>
+          <sw-basic-item primary icon="face" content="primary" split mini mask>
+            <sw-basic-item warning icon="face" content="warning" indent-level="3" mini split mask>
+              <sw-basic-item negative content="negative" indent-level="6" mini split mask>
                 <sw-basic-item v-for="x in 10" indent-level="6" mini>
                   <div slot="content">default</div>
                   <sw-icon slot="after" positive name="favorite"></sw-icon>
@@ -173,7 +173,7 @@ export default {
         </sw-scroll-area>
       </sw-layout>
       <sw-layout :collapseTop="collapse">
-        <sw-basic-item slot="top" class="bg-primary" color="#fff" color-content icon="fingerprint" mini>
+        <sw-basic-item slot="top" class="bg-primary" color="#fff" icon="fingerprint" mini>
           <sw-item slot="after">
             <sw-icon name="arrow_forward" color="#fff"></sw-icon>
           </sw-item>

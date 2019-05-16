@@ -18,6 +18,7 @@ import BasicItem from './components/basicItem/index.js'
 import Notification from './components/notification/index.js'
 import Layout from './components/layout/index.js'
 import Slide from './components/slide/index.js'
+import Mask from './directives/mask/index.js'
 import Ripple from './directives/ripple/index.js'
 
 const components = [
@@ -41,7 +42,8 @@ const components = [
 ]
 
 const directives = [
-  Ripple
+  Ripple,
+  Mask
 ]
 
 const install = function (Vue) {
@@ -78,5 +80,6 @@ export default {
   Notification,
   Layout,
   Slide,
-  Ripple
+  Ripple,
+  Mask
 }

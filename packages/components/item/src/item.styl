@@ -1,6 +1,12 @@
 .sw-item
     position relative
     flex auto
+    border-radius inherit
+    &.disable
+        pointer-events none !important
+        color $grey !important
+    &.router-link-exact-active .sw-mask
+        visibility visible !important
     .sw-item__content
         position relative
         flex auto

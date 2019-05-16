@@ -7,30 +7,44 @@ export default {
     hideAfter: Boolean,
     to: String | Object,
     center: Boolean,
-    end: Boolean
+    end: Boolean,
+    disabled: Boolean,
+    mask: Object | Boolean,
+    ripple: Object | Boolean
   },
   data: () => ({}),
-  computed: {
-    style() {
-      return this.to ? { cursor: 'pointer' } : void 0
-    }
-  },
   render(h) {
-    return h('div', {
+    return h(`${this.to !== void 0 ? 'router-link' : 'div'}`, {
       staticClass: 'sw-item flex items-center',
       class: {
-        'no-wrap': !this.wrap
+        'no-wrap': !this.wrap,
+        disable: this.disabled
       },
-      style: this.style,
-      on: {
-        ...this.$listeners,
-        click: e => {
-          if (this.to) {
-            this.$router.push(this.to)
+      on: this.disabled ? void 0 : {
+        ...this.$listeners
+      },
+      props: {
+        to: this.to
+      },
+      directives: (this.to !== void 0 || this.mask !== void 0 ? [
+        {
+          name: 'mask',
+          value: {
+            disabled: this.mask !== void 0 && this.mask.disabled || this.mask === void 0 && this.to !== void 0,
+            color: this.mask !== void 0 && this.mask.color,
+            stay: this.mask !== void 0 && this.mask.stay
           }
-          this.$emit('click', e)
+        },
+      ] : []).concat(this.ripple !== void 0 ? [
+        {
+          name: 'ripple',
+          value: {
+            disabled: this.ripple !== void 0 && this.ripple.disabled,
+            color: this.ripple !== void 0 && this.mask.color,
+            center: this.ripple !== void 0 && this.ripple.center
+          }
         }
-      }
+      ] : [])
     }, [
       h('div', {
         staticClass: 'sw-item__content flex items-center',

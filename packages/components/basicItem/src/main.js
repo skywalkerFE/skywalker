@@ -13,19 +13,20 @@ export default {
     negative: Boolean,
     positive: Boolean,
     warning: Boolean,
-    colorContent: Boolean,
     collapsed: {
       type: Boolean,
       default: true
     },
     split: Boolean,
     mini: Boolean,
-    hover: Boolean,
     to: String | Object,
     indentLevel: Number | String,
     center: Boolean,
     end: Boolean,
-    min: Number | String
+    min: Number | String,
+    mask: Object | Boolean,
+    ripple: Object | Boolean,
+    sub: Array
   },
   data: () => ({
     innerCollapsed: true,
@@ -45,30 +46,21 @@ export default {
       class: {
         split: this.split && !this.innerCollapsed
       },
-      on: {
+      on: this.disabled ? void 0 : {
         ...this.$listeners
       }
     }, [
       h('div', {
         staticClass: 'sw-basic-item__main',
         class: {
+          'color-primary': !this.disabled && this.primary,
+          'color-negative': !this.disabled && this.negative,
+          'color-positive': !this.disabled && this.positive,
+          'color-warning': !this.disabled && this.warning,
           disable: this.disabled
         },
         style: {
-          'padding-left': `${this.indentLevel * 12}px`,
-          cursor: !this.disabled && (this.to !== void 0 || this.$scopedSlots.default) ? 'pointer' : void 0
-        },
-        on: this.disabled ? void 0 : {
-          ...this.$listeners,
-          click: () => {
-            if (this.$scopedSlots.default) { this.innerCollapsed = !this.innerCollapsed }
-          },
-          mouseover: () => {
-            this.mouseover = true
-          },
-          mouseout: () => {
-            this.mouseover = false
-          }
+          color: !this.disabled && this.color
         }
       }, [
         h('sw-item', {
@@ -76,34 +68,46 @@ export default {
           props: {
             to: this.to,
             center: this.center,
-            end: this.end
+            end: this.end,
+            disabled: this.disabled,
+            mask: this.mask,
+            ripple: this.ripple
+          },
+          class: {
+            expand: !this.innerCollapsed
+          },
+          style: {
+            'padding-left': `${this.indentLevel * 12}px`,
+            cursor: !this.disabled && (this.to !== void 0 || this.$scopedSlots.default || this.sub !== void 0) ? 'pointer' : void 0
+          },
+          on: this.disabled ? void 0 : {
+            ...this.$listeners,
+            click: () => {
+              if (this.$scopedSlots.default || this.sub !== void 0) { this.innerCollapsed = !this.innerCollapsed }
+            },
+            mouseover: () => {
+              this.mouseover = true
+            },
+            mouseout: () => {
+              this.mouseover = false
+            }
           },
           scopedSlots: {
             before: this.$scopedSlots.before !== void 0 ? this.$scopedSlots.before
               : this.icon !== void 0 ? () => [h('sw-icon', {
                 staticClass: 'sw-basic-item__icon',
                 props: {
-                  name: this.icon,
-                  color: !this.disabled && this.color,
-                  primary: !this.disabled && this.primary,
-                  negative: !this.disabled && this.negative,
-                  positive: !this.disabled && this.positive,
-                  warning: !this.disabled && this.warning
+                  name: this.icon
                 }
               })] : void 0,
   
             default: () => [h('div', {
               staticClass: 'sw-basic-item__content flex items-center',
               class: {
-                'color-primary': !this.disabled && this.colorContent && this.primary,
-                'color-negative': !this.disabled && this.colorContent && this.negative,
-                'color-positive': !this.disabled && this.colorContent && this.positive,
-                'color-warning': !this.disabled && this.colorContent && this.warning,
                 'space-left': this.$scopedSlots.before !== void 0 || this.icon !== void 0,
-                'space-right': (this.$scopedSlots.after !== void 0 || this.$scopedSlots.default !== void 0) && (this.$scopedSlots.content !== void 0 || this.content !== void 0 || this.subContent !== void 0)
+                'space-right': (this.$scopedSlots.after !== void 0 || this.$scopedSlots.default !== void 0 || this.sub !== void 0) && (this.$scopedSlots.content !== void 0 || this.content !== void 0 || this.subContent !== void 0)
               },
               style: {
-                color: !this.disabled && this.colorContent && this.color,
                 'min-height': this.mini ? '36px' : '48px'
               }
             }, this.$scopedSlots.content !== void 0 ? [this.$scopedSlots.content()] : [
@@ -120,42 +124,60 @@ export default {
             ]
             )],
   
-            after: this.$scopedSlots.after !== void 0 ? this.$scopedSlots.after
-              : this.$scopedSlots.default ? () => [h('sw-icon', {
-                staticClass: 'sw-basic-item__expansion color-grey',
-                style: {
-                  transform: !this.innerCollapsed ? 'rotate(180deg)' : void 0,
-                  color: this.mouseover ? 'currentColor' : void 0
-                },
-                props: {
-                  name: 'keyboard_arrow_down'
-                }
-              })] : void 0
-          }
-        }),
-        h('div', {
-          staticClass: 'sw-mask',
-          class: {
-            invisible: !this.hover || !this.disabled && !this.mouseover,
-            'color-primary': this.primary,
-            'color-negative': this.negative,
-            'color-positive': this.positive,
-            'color-warning': this.warning
-          },
-          style: {
-            color: this.color,
-            'z-index': this.disabled ? 9 : 0,
-            'background-color': this.disabled ? 'transparent' : 'currentColor'
+            after: this.$scopedSlots.default || this.sub !== void 0 ? () => [h('sw-icon', {
+              staticClass: 'sw-basic-item__expansion color-grey',
+              style: {
+                transform: !this.innerCollapsed ? 'rotate(180deg)' : void 0,
+                color: this.mouseover ? 'currentColor' : void 0
+              },
+              props: {
+                name: 'keyboard_arrow_down'
+              }
+            })] : this.$scopedSlots.after !== void 0 ? this.$scopedSlots.after
+              : void 0
           }
         })
       ]),
-      this.$scopedSlots.default ? h(Slide, {
+      this.$scopedSlots.default || this.sub !== void 0 ? h(Slide, {
         props: {
           collapsed: this.innerCollapsed,
           min: this.min
         },
         scopedSlots: {
-          default: this.$scopedSlots.default
+          default: () => {
+            let sub = this.sub !== void 0 ? this.sub.map(props => {
+              let color = !!props.color || !!props.primary || !!props.negative || !!props.positive || !!props.warning || false
+              let position = !!props.center || !!props.end || false
+
+              return h('sw-basic-item', {
+                props: {
+                  content: props.content,
+                  subContent: props.subContent,
+                  icon: props.icon,
+                  disabled: props.disabled,
+                  collapsed: props.collapsed,
+                  to: props.to,
+                  sub: props.sub,
+                  color: color ? props.color : this.color,
+                  primary: color ? props.primary : this.primary,
+                  negative: color ? props.negative : this.negative,
+                  positive: color ? props.positive : this.positive,
+                  warning: color ? props.warning : this.warning,
+                  center: position ? props.center : this.center,
+                  end: position ? props.end : this.end,
+                  split: props.split || this.split,
+                  mini: props.mini || this.mini,
+                  indentLevel: props.indentLevel || this.indentLevel,
+                  min: props.min || this.min,
+                  mask: props.mask || this.mask,
+                  ripple: props.ripple || this.ripple
+                }
+              })
+            }) : []
+
+            sub.unshift(this.$scopedSlots.default ? this.$scopedSlots.default() : void 0)
+            return sub
+          }
         }
       }) : void 0
     ])

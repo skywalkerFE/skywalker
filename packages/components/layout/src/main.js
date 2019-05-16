@@ -8,6 +8,10 @@ export default {
     collapseLeft: Boolean,
     collapseRight: Boolean,
     collapseBottom: Boolean,
+    fitTop: Boolean,
+    fitLeft: Boolean,
+    fitRight: Boolean,
+    fitBottom: Boolean,
     topMin: Number | String,
     leftMin: Number | String,
     rightMin: Number | String,
@@ -29,6 +33,7 @@ export default {
       this.$scopedSlots.top !== void 0 ? h(Slide, {
         props: {
           collapsed: this.collapseTop,
+          fit: this.fitTop,
           min: this.topMin
         },
         staticClass: 'sw-layout__around',
@@ -41,6 +46,7 @@ export default {
         props: {
           collapsed: this.collapseLeft,
           horizontal: true,
+          fit: this.fitLeft,
           min: this.leftMin
         },
         staticClass: 'sw-layout__around',
@@ -59,6 +65,7 @@ export default {
         props: {
           collapsed: this.collapseRight,
           horizontal: true,
+          fit: this.fitRight,
           min: this.rightMin
         },
         staticClass: 'sw-layout__around',
@@ -70,6 +77,7 @@ export default {
       this.$scopedSlots.bottom !== void 0 ? h(Slide, {
         props: {
           collapsed: this.collapseBottom,
+          fit: this.fitBottom,
           min: this.bottomMin
         },
         staticClass: 'sw-layout__around',

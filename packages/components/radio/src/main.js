@@ -73,9 +73,9 @@ export default {
       class: {
         disable: this.disabled || this.parentDisabled
       },
-      nativeOn: {
+      nativeOn: this.disabled ? void 0 : {
         click: () => {
-          if (this.disabled || checked) { return }
+          if (checked) { return }
           this.checked = true
         }
       },
