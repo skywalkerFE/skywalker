@@ -5,7 +5,8 @@ export default {
   mixins: [Field], // focused,disabled
   props: {
     value: String,
-    placeholder: String
+    placeholder: String,
+    autocomplete: Boolean
   },
   data: () => ({}),
   computed: {},
@@ -20,6 +21,9 @@ export default {
       return [h('input', {
         ref: 'input',
         staticClass: 'sw-input margin-min',
+        attrs: {
+          autocomplete: this.autocomplete ? 'on' : 'off'
+        },
         domProps: {
           value: this.value,
           placeholder: this.placeholder || '',

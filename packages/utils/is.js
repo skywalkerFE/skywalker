@@ -27,7 +27,7 @@ export function isDeepEqual(a, b) {
 
 export function isStringContain(s, v) {
   let innerS = String(s)
-  let innerV = Array.isArray(v) ? v : [v]
+  let innerV = v.replace(/\s+/g, '').split('')
   let sum = 0
 
   innerV.forEach(x => {

@@ -40,7 +40,7 @@ export default {
           name: 'ripple',
           value: {
             disabled: this.ripple !== void 0 && this.ripple.disabled,
-            color: this.ripple !== void 0 && this.mask.color,
+            color: this.ripple !== void 0 && this.ripple.color,
             center: this.ripple !== void 0 && this.ripple.center
           }
         }

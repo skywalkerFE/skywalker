@@ -1,6 +1,6 @@
 {
   "name": "@skywalker-fe/skywalker",
-  "version": "0.0.19",
+  "version": "0.0.23",
   "description": "Framework Components for Vue js",
   "main": "lib/skywalker.common.min.js",
   "module": "lib/skywalker.esm.min.js",
@@ -9,7 +9,7 @@
     "component": "node build/component.js > component.json",
     "demo": "cross-env NODE_ENV=production webpack --config build/webpack.demo.config.js",
     "dev": "npm run style && npm run component && rollup --config build/rollup.config.js",
-    "dist": "npm run style && npm run component && cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "dist": "npm run style && npm run component && rollup --config build/rollup.config.js && cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "docs:dev": "node build/css.js > packages/css/index.styl && vuepress dev docs",
     "docs:build": "node build/css.js > packages/css/index.styl && vuepress build docs",
     "docs:deploy": "sh deploy.sh"

@@ -45,9 +45,7 @@ export default {
     },
     innerOptions() {
       return this.options.reduce((a, c) => {
-        let filterArr = this.filterValue.replace(/\s+/g, '').split('')
-
-        if (isStringContain(this.getName(c), filterArr)) {
+        if (isStringContain(this.getName(c), this.filterValue)) {
           a.push(c)
         }
         return a

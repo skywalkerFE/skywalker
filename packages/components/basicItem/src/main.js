@@ -146,7 +146,6 @@ export default {
         scopedSlots: {
           default: () => {
             let sub = this.sub !== void 0 ? this.sub.map(props => {
-              let color = !!props.color || !!props.primary || !!props.negative || !!props.positive || !!props.warning || false
               let position = !!props.center || !!props.end || false
 
               return h('sw-basic-item', {
@@ -158,11 +157,11 @@ export default {
                   collapsed: props.collapsed,
                   to: props.to,
                   sub: props.sub,
-                  color: color ? props.color : this.color,
-                  primary: color ? props.primary : this.primary,
-                  negative: color ? props.negative : this.negative,
-                  positive: color ? props.positive : this.positive,
-                  warning: color ? props.warning : this.warning,
+                  color: props.color,
+                  primary: props.primary,
+                  negative: props.negative,
+                  positive: props.positive,
+                  warning: props.warning,
                   center: position ? props.center : this.center,
                   end: position ? props.end : this.end,
                   split: props.split || this.split,

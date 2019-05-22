@@ -16,6 +16,8 @@ const disableMask = ctx => {
 const stayMask = ctx => {
   if (ctx.stay) {
     ctx.node.classList.remove('invisible')
+  } else {
+    ctx.node.classList.add('invisible')
   }
 }
 const colorMask = ctx => {
