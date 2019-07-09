@@ -1,6 +1,6 @@
 {
   "name": "@skywalker-fe/skywalker",
-  "version": "0.0.23",
+  "version": "0.0.37",
   "description": "Framework Components for Vue js",
   "main": "lib/skywalker.common.min.js",
   "module": "lib/skywalker.esm.min.js",

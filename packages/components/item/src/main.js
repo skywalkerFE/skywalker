@@ -10,7 +10,10 @@ export default {
     end: Boolean,
     disabled: Boolean,
     mask: Object | Boolean,
-    ripple: Object | Boolean
+    ripple: Object | Boolean,
+    active: {
+      required: false
+    }
   },
   data: () => ({}),
   render(h) {
@@ -18,6 +21,7 @@ export default {
       staticClass: 'sw-item flex items-center',
       class: {
         'no-wrap': !this.wrap,
+        active: this.active,
         disable: this.disabled
       },
       on: this.disabled ? void 0 : {
@@ -26,11 +30,11 @@ export default {
       props: {
         to: this.to
       },
-      directives: (this.to !== void 0 || this.mask !== void 0 ? [
+      directives: (this.to !== void 0 || this.active !== void 0 || this.mask !== void 0 ? [
         {
           name: 'mask',
           value: {
-            disabled: this.mask !== void 0 && this.mask.disabled || this.mask === void 0 && this.to !== void 0,
+            disabled: this.mask !== void 0 && this.mask.disabled || this.mask === void 0 && (this.to !== void 0 || this.active !== void 0),
             color: this.mask !== void 0 && this.mask.color,
             stay: this.mask !== void 0 && this.mask.stay
           }

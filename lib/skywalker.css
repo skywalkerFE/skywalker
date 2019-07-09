@@ -138,6 +138,9 @@ body {
   font-smoothing: antialiased;
   font-size: 14px;
 }
+.color-white {
+  color: #fff;
+}
 .color-primary {
   color: #0070d2;
 }
@@ -155,6 +158,9 @@ body {
 }
 .color-light-grey {
   color: #f2f2f2;
+}
+.bg-dark {
+  background-color: #000;
 }
 .bg-primary {
   background-color: #0070d2;
@@ -402,6 +408,9 @@ body {
 .deep-shadow {
   box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 5px 8px rgba(0,0,0,0.14), 0 1px 14px rgba(0,0,0,0.12);
 }
+.inset-shadow {
+  box-shadow: inset 0 7px 9px -7px rgba(0,0,0,0.7);
+}
 .flex {
   display: flex;
   flex-wrap: wrap;
@@ -528,6 +537,9 @@ body {
 }
 .sw-basic-item .sw-basic-item__main .sw-basic-item__content.space-right {
   padding-right: 12px;
+}
+.sw-basic-item .sw-basic-item__main .sw-basic-item__content .default-content {
+  white-space: nowrap;
 }
 .sw-basic-item .sw-basic-item__main .sw-basic-item__content .default-content .sw-basic-item__label {
   font-size: 14px;

@@ -25,9 +25,9 @@ export function isDeepEqual(a, b) {
   return props.every(prop => isDeepEqual(a[prop], b[prop]))
 }
 
-export function isStringContain(s, v) {
+export function isStringContain(s, v, random) {
   let innerS = String(s)
-  let innerV = v.replace(/\s+/g, '').split('')
+  let innerV = random === true ? v.replace(/\s+/g, '').split('') : v.replace(/\s+/g, ' ').split(' ')
   let sum = 0
 
   innerV.forEach(x => {

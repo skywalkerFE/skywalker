@@ -39,9 +39,6 @@ export default {
         grey: this.disabled,
         round: this.round && !this.underlined,
         'common-shadow': this.shadow && (this.bordered || this.filled)
-      },
-      on: this.disabled ? void 0 : {
-        ...this.$listeners
       }
     }, [
       h('sw-item', {

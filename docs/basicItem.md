@@ -10,7 +10,7 @@
       </sw-item>
     </sw-basic-item>
     <div style="font-weight:bold;color:grey;margin:20px 0">添加扩展内容、自由设置缩进并分隔下拉内容</div>
-    <sw-basic-item primary icon="alarm" content="expandable" split mask>
+    <sw-basic-item primary filled icon="alarm" content="expandable" split mask :collapsed.sync="collapsed">
       <sw-basic-item warning icon="alarm" content="not collapsed" indent-level="2" mini :collapsed="false" split mask disabled>
         <sw-basic-item negative content="custom content" indent-level="5" mini split mask :ripple="{center:true}">
           <sw-basic-item color="purple" indent-level="5" mini mask>
@@ -27,8 +27,14 @@
 <script>
 export default {
   data: ()=>({
-    to:'icon.html'
-  })
+    to:'icon.html',
+    collapsed:false
+  }),
+  watch:{
+    collapsed(v){
+      console.log(v)
+    }
+  }
 }
 </script>
 
@@ -79,6 +85,8 @@ indent-level|Number|false|缩进等级，递增12px，自由设置|
 center|Boolean|false|中间部分的内容水平居中|
 end|Boolean|false|中间部分的内容水平居右|
 min|Number|0|扩展内容折叠后的最小高度，默认0|
+active|Boolean|false|手动active|
+callback|Function|false|(主要为sub)指定点击回调方法|
 
 ### 插槽
 

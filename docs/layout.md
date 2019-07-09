@@ -115,11 +115,7 @@ collapseTop、collapseLeft、collapseRight、collapseBottom<br/>
         <sw-scroll-area y stretch>
           <sw-basic-item primary icon="face" content="primary" split mini mask>
             <sw-basic-item warning icon="face" content="warning" indent-level="3" mini split mask>
-              <sw-basic-item negative content="negative" indent-level="6" mini split mask>
-                <sw-basic-item v-for="x in 10" indent-level="6" mini>
-                  <div slot="content">default</div>
-                  <sw-icon slot="after" positive name="favorite"></sw-icon>
-                </sw-basic-item>
+              <sw-basic-item negative content="negative" indent-level="6" mini split mask :sub="items">
               </sw-basic-item>
             </sw-basic-item>
           </sw-basic-item>
@@ -144,7 +140,27 @@ export default {
     to:'icon.html',
     val:'',
     collapse:false
-  })
+  }),
+  computed:{
+    items(){
+      let res = []
+
+      for(let i of ['1','2','3','4','5']){
+        res.push({
+          content:i,
+          callback:(e)=>{
+            console.log(e,i)
+          }
+          })
+      }
+      return res
+    }
+  },
+  methods:{
+    clickFn(e){
+      console.log(e)
+    }
+  }
 }
 </script>
 
@@ -162,11 +178,7 @@ export default {
         <sw-scroll-area y stretch bordered>
           <sw-basic-item primary icon="face" content="primary" split mini mask>
             <sw-basic-item warning icon="face" content="warning" indent-level="3" mini split mask>
-              <sw-basic-item negative content="negative" indent-level="6" mini split mask>
-                <sw-basic-item v-for="x in 10" indent-level="6" mini>
-                  <div slot="content">default</div>
-                  <sw-icon slot="after" positive name="favorite"></sw-icon>
-                </sw-basic-item>
+              <sw-basic-item negative content="negative" indent-level="6" mini split mask :sub="items">
               </sw-basic-item>
             </sw-basic-item>
           </sw-basic-item>

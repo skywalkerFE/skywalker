@@ -24,7 +24,12 @@ export default {
     setStyle(passive) {
       let slideTarget = this.$refs.slide
 
-      if (passive && !slideTarget.style[this.target]) { return }
+      if (passive) {
+        if (slideTarget.style[this.target] && !this.innerCollapsed) {
+          slideTarget.style[this.target] = null
+        }
+        return
+      }
       slideTarget.style[this.target] = `${this.$refs.observe[this.measureTarget]}px`
       if (this.innerCollapsed) {
         setTimeout(() => {
@@ -59,6 +64,8 @@ export default {
     })
 
     this.observer.observe(this.$refs.observe, {
+      attributes: true,
+      attributeFilter: ['mutate'],
       childList: true,
       subtree: true,
       characterData: true

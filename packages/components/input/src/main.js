@@ -31,6 +31,9 @@ export default {
         },
         on: {
           ...this.$listeners,
+          blur: e => {
+            this.$emit('blur', e.target.value)
+          },
           input: e => {
             this.$emit('input', e.target.value)
           }
