@@ -7,7 +7,8 @@ export default {
     collapsed: Boolean,
     horizontal: Boolean,
     fit: Boolean,
-    min: Number | String
+    min: Number | String,
+    shadow: Boolean
   },
   data: () => ({
     innerCollapsed: true
@@ -24,6 +25,9 @@ export default {
     return h('div', {
       ref: 'slide',
       staticClass: 'sw-slide__container',
+      class: {
+        shadow: this.shadow
+      }
     }, [
       h('div', {
         ref: 'observe',

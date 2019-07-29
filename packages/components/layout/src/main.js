@@ -15,7 +15,8 @@ export default {
     topMin: Number | String,
     leftMin: Number | String,
     rightMin: Number | String,
-    bottomMin: Number | String
+    bottomMin: Number | String,
+    shadow: Boolean
   },
   data: () => ({}),
   computed: {
@@ -26,6 +27,9 @@ export default {
   render(h) {
     return h('div', {
       staticClass: 'sw-layout flex no-wrap',
+      class: {
+        shadow: this.shadow
+      },
       style: {
         'flex-direction': this.verticalStretch && 'column'
       }

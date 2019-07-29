@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import Slide from '../../slide'
 import { isStringContain } from '../../../utils/is'
 
@@ -9,7 +10,6 @@ export default {
     subContent: String,
     icon: String,
     disabled: Boolean,
-    filled: Boolean,
     color: String,
     primary: Boolean,
     negative: Boolean,
@@ -19,27 +19,117 @@ export default {
       type: Boolean,
       default: true
     },
-    split: Boolean,
-    mini: Boolean,
     to: String | Object,
     indentLevel: Number | String,
-    center: Boolean,
-    end: Boolean,
     mask: Object | Boolean,
     ripple: Object | Boolean,
     sub: Array,
-    active: Boolean,
+    active: {
+      type: Boolean,
+      default: false
+    },
     callback: Function,
     subFilter: String,
-    subIndex: Number
+    filled: {
+      type: Boolean,
+      default: void 0
+    },
+    shadow: {
+      type: Boolean,
+      default: void 0
+    },
+    split: {
+      type: Boolean,
+      default: void 0
+    },
+    mini: {
+      type: Boolean,
+      default: void 0
+    },
+    center: {
+      type: Boolean,
+      default: void 0
+    },
+    end: {
+      type: Boolean,
+      default: void 0
+    }
   },
   data: () => ({
-    innerActive: false,
-    innerCollapsed: true,
     collapsedBefore: true,
     mouseover: false,
-    hide: false
+    hide: false,
+    eventOrigin: false,
+    eventHub: void 0
   }),
+  computed: {
+    hasBefore() {
+      return this.$scopedSlots.before !== void 0 || this.icon !== void 0
+    },
+    hasContent() {
+      return this.$scopedSlots.content !== void 0 || this.content !== void 0 || this.subContent !== void 0
+    },
+    hasSub() {
+      return this.$scopedSlots.default !== void 0 || this.sub !== void 0
+    },
+    hasAction() {
+      return !this.disabled && (this.to !== void 0 || this.callback !== void 0 || this.$scopedSlots.default || this.sub !== void 0)
+    },
+    innerCenter() {
+      return this.center !== void 0 ? this.center : this.rootParams.center
+    },
+    innerEnd() {
+      return this.end !== void 0 ? this.end : this.rootParams.end
+    },
+    innerFilled() {
+      return this.filled !== void 0 ? this.filled : this.rootParams.filled
+    },
+    innerSplit() {
+      return this.split !== void 0 ? this.split : this.rootParams.split
+    },
+    innerMini() {
+      return this.mini !== void 0 ? this.mini : this.rootParams.mini
+    },
+    innerShadow() {
+      return this.shadow !== void 0 ? this.shadow : this.rootParams.shadow
+    },
+    innerMask() {
+      return this.mask !== void 0 ? this.mask : this.rootParams.mask
+    },
+    innerRipple() {
+      return this.ripple !== void 0 ? this.ripple : this.rootParams.ripple
+    },
+    innerIndentLevel() {
+      return this.indentLevel || this.rootParams.indentLevel
+    },
+    innerCallback() {
+      return this.callback || this.rootParams.callback
+    },
+    innerSubFilter() {
+      return this.root === void 0 ? this.subFilter : this.root.subFilter
+    },
+    innerEventHub() {
+      return this.eventHub || this.root.eventHub
+    },
+    rootParams() {
+      return this.root || {}
+    },
+    minHeight() {
+      return this.innerMini ? '36px' : '48px'
+    }
+  },
+  inject: {
+    root: {
+      default() {
+        return void 0
+      }
+    }
+  },
+  provide() {
+    return this.root === void 0 ? {
+      root: this
+    } : void 0
+  },
   methods: {
     subFilterChange(restore, remember) {
       const isSubContain = sub => {
@@ -49,45 +139,51 @@ export default {
           if (x.sub) {
             return isSubContain(x.sub)
           } else {
-            return isStringContain(x.content, this.subFilter)
+            return isStringContain(x.content, this.innerSubFilter)
           }
         })
         return contain
       }
 
       if (this.sub === void 0) {
-        this.hide = !isStringContain(this.content, this.subFilter)
+        this.hide = !isStringContain(this.content, this.innerSubFilter)
       } else {
         if (restore) {
-          this.innerCollapsed = this.collapsedBefore
+          this.$emit('update:collapsed', this.collapsedBefore)
           this.hide = false
           return
         }
         if (remember) {
-          this.collapsedBefore = this.innerCollapsed
+          this.collapsedBefore = this.collapsed
         }
-        this.innerCollapsed = false
-        this.hide = this.subIndex !== void 0 && !isSubContain(this.sub)
+        this.$emit('update:collapsed', false)
+        this.hide = this.root !== void 0 && !isSubContain(this.sub)
       }
+    },
+    initEventHub() {
+      if (this.root === void 0) {
+        this.eventHub = new Vue()
+      }
+      this.innerEventHub.$on('change:active', () => {
+        if (!this.eventOrigin) {
+          this.$emit('update:active', false)
+        }
+        this.eventOrigin = false
+      })
+    },
+    emitActive() {
+      this.eventOrigin = true
+      this.$emit('update:active', true)
+      this.innerEventHub.$emit('change:active')
     }
   },
   created() {
-    if (this.collapsed !== void 0) {
-      this.$watch('collapsed', v => {
-        this.innerCollapsed = this.collapsedBefore = v === void 0 ? true : v
-      }, { immediate: true })
-      this.$watch('innerCollapsed', v => {
-        this.$emit('update:collapsed', v)
-      }, { immediate: true })
-    }
-    if (this.content !== void 0 && this.subFilter !== void 0) {
-      this.$watch('subFilter', (v, ov) => {
-        this.subFilterChange(v === '', ov === '')
-      }, { immediate: true })
-    }
-    if (this.active !== void 0) {
-      this.$watch('active', v => {
-        this.innerActive = v
+    this.initEventHub()
+    if (this.content !== void 0 && this.innerSubFilter !== void 0) {
+      this.$watch('innerSubFilter', (v, ov) => {
+        if (v !== '' || ov !== void 0) {
+          this.subFilterChange(v === '', ov === '')
+        }
       }, { immediate: true })
     }
   },
@@ -98,54 +194,58 @@ export default {
         mutate: this.hide
       },
       class: {
-        split: this.split && !this.innerCollapsed,
+        split: this.innerSplit && !this.collapsed,
         hide: this.hide
       }
     }, [
       h('div', {
         staticClass: 'sw-basic-item__main',
-        class: this.disabled ? 'disable' : {
-          'color-primary': !this.filled && this.primary,
-          'color-negative': !this.filled && this.negative,
-          'color-positive': !this.filled && this.positive,
-          'color-warning': !this.filled && this.warning,
-          'bg-primary': this.filled && this.primary,
-          'bg-negative': this.filled && this.negative,
-          'bg-positive': this.filled && this.positive,
-          'bg-warning': this.filled && this.warning,
-          'bg-dark color-white': this.filled
+        class: this.disabled ? 'disable' : this.innerFilled ? {
+          'bg-primary': this.primary,
+          'bg-negative': this.negative,
+          'bg-positive': this.positive,
+          'bg-warning': this.warning,
+          'bg-dark color-white': true
+        } : {
+          'color-primary': this.primary,
+          'color-negative': this.negative,
+          'color-positive': this.positive,
+          'color-warning': this.warning
         },
-        style: this.disabled ? void 0 : {
-          color: !this.filled && this.color,
-          'background-color': this.filled && this.color
+        style: this.disabled ? void 0 : this.innerFilled ? {
+          'background-color': this.color
+        } : {
+          color: this.color
         }
       }, [
         h('sw-item', {
           staticClass: 'sw-basic-item__inner',
           props: {
-            to: !this.callback && this.to || void 0,
-            center: this.center,
-            end: this.end,
+            to: this.innerCallback ? void 0 : this.to,
+            center: this.innerCenter,
+            end: this.innerEnd,
             disabled: this.disabled,
-            mask: this.mask,
-            ripple: this.ripple,
-            active: this.innerActive
+            mask: this.innerMask,
+            ripple: this.innerRipple,
+            active: this.active
           },
           class: {
-            expand: !this.innerCollapsed
+            expand: !this.collapsed
           },
           style: {
-            'min-height': this.mini ? '36px' : '48px',
-            'padding-left': `${this.indentLevel * 12}px`,
-            cursor: !this.disabled && (this.to !== void 0 || this.callback !== void 0 || this.$scopedSlots.default || this.sub !== void 0) ? 'pointer' : void 0
+            'min-height': this.minHeight,
+            'padding-left': `${this.innerIndentLevel * 12}px`,
+            cursor: this.hasAction ? 'pointer' : void 0
           },
           on: this.disabled ? void 0 : {
             ...this.$listeners,
             click: () => {
-              if (this.$scopedSlots.default || this.sub !== void 0) {
-                this.innerCollapsed = !this.innerCollapsed
+              if (this.hasSub) {
+                this.$emit('update:collapsed', !this.collapsed)
+              } else {
+                this.emitActive()
               }
-              this.callback && this.callback(this)
+              this.innerCallback && this.innerCallback(this)
               this.$emit('click')
             },
             mouseover: () => {
@@ -156,19 +256,23 @@ export default {
             }
           },
           scopedSlots: {
-            before: this.$scopedSlots.before !== void 0 ? this.$scopedSlots.before
-              : this.icon !== void 0 ? () => [h('sw-icon', {
+            before: () => [h('div', {
+              staticClass: 'flex items-center',
+              class: {
+                'space-right': this.hasBefore
+              }
+            }, this.$scopedSlots.before !== void 0 ? [this.$scopedSlots.before()]
+              : this.icon !== void 0 ? [h('sw-icon', {
                 staticClass: 'sw-basic-item__icon',
                 props: {
                   name: this.icon
                 }
-              })] : void 0,
+              })] : void 0)],
   
             default: () => [h('div', {
               staticClass: 'sw-basic-item__content flex items-center',
               class: {
-                'space-left': this.$scopedSlots.before !== void 0 || this.icon !== void 0,
-                'space-right': (this.$scopedSlots.after !== void 0 || this.$scopedSlots.default !== void 0 || this.sub !== void 0) && (this.$scopedSlots.content !== void 0 || this.content !== void 0 || this.subContent !== void 0)
+                'space-right': this.hasContent
               }
             }, this.$scopedSlots.content !== void 0 ? [this.$scopedSlots.content()] : [
               h('div', {
@@ -184,57 +288,42 @@ export default {
             ]
             )],
   
-            after: this.$scopedSlots.after !== void 0 ? this.$scopedSlots.after : this.$scopedSlots.default || this.sub !== void 0 ? () => [h('sw-icon', {
-              staticClass: 'sw-basic-item__expansion color-grey',
-              style: {
-                transform: !this.innerCollapsed ? 'rotate(180deg)' : void 0,
-                color: this.mouseover ? 'currentColor' : void 0
-              },
-              props: {
-                name: 'keyboard_arrow_down'
-              }
-            })] : void 0
+            after: () => [h('div', {
+              staticClass: 'flex items-center'
+            }, this.$scopedSlots.after !== void 0 ? [this.$scopedSlots.after()]
+              : this.hasSub ? [h('sw-icon', {
+                staticClass: 'sw-basic-item__expansion color-grey',
+                style: {
+                  transform: !this.collapsed ? 'rotate(180deg)' : void 0,
+                  color: this.mouseover ? 'currentColor' : void 0
+                },
+                props: {
+                  name: 'keyboard_arrow_down'
+                }
+              })] : void 0)]
           }
         })
       ]),
-      this.$scopedSlots.default || this.sub !== void 0 ? h(Slide, {
+      this.hasSub ? h(Slide, {
         props: {
-          collapsed: this.innerCollapsed
+          collapsed: this.collapsed,
+          shadow: this.innerShadow
         },
         scopedSlots: {
           default: () => {
-            let sub = this.sub !== void 0 ? this.sub.map((props, i) => {
-              let position = !!props.center || !!props.end || false
-
-              return h('sw-basic-item', {
-                props: {
-                  content: props.content,
-                  subContent: props.subContent,
-                  icon: props.icon,
-                  disabled: props.disabled,
-                  collapsed: props.collapsed,
-                  to: props.to,
-                  sub: props.sub,
-                  color: props.color,
-                  primary: props.primary,
-                  negative: props.negative,
-                  positive: props.positive,
-                  warning: props.warning,
-                  center: position ? props.center : this.center,
-                  end: position ? props.end : this.end,
-                  filled: props.filled !== void 0 ? props.filled : this.filled,
-                  split: props.split !== void 0 ? props.split : this.split,
-                  mini: props.mini !== void 0 ? props.mini : this.mini,
-                  indentLevel: props.indentLevel !== void 0 ? props.indentLevel : this.indentLevel,
-                  mask: props.mask !== void 0 ? props.mask : this.mask,
-                  ripple: props.ripple !== void 0 ? props.ripple : this.ripple,
-                  callback: props.callback !== void 0 ? props.callback : this.callback,
-                  active: props.active,
-                  subFilter: this.subFilter,
-                  subIndex: i
+            let sub = this.sub !== void 0 ? this.sub.map(props => h('sw-basic-item', {
+              props: props,
+              on: {
+                'update:collapsed': v => {
+                  props.collapsed = v
+                  this.$forceUpdate()
+                },
+                'update:active': v => {
+                  props.active = v
+                  this.$forceUpdate()
                 }
-              })
-            }) : []
+              }
+            })) : []
 
             sub.unshift(this.$scopedSlots.default ? this.$scopedSlots.default() : void 0)
             return sub
@@ -244,4 +333,3 @@ export default {
     ])
   }
 }
-  

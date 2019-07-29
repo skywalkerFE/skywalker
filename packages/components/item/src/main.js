@@ -9,11 +9,9 @@ export default {
     center: Boolean,
     end: Boolean,
     disabled: Boolean,
+    active: Boolean,
     mask: Object | Boolean,
-    ripple: Object | Boolean,
-    active: {
-      required: false
-    }
+    ripple: Object | Boolean
   },
   data: () => ({}),
   render(h) {
@@ -25,27 +23,30 @@ export default {
         disable: this.disabled
       },
       on: this.disabled ? void 0 : {
-        ...this.$listeners
+        ...this.$listeners,
+        click: () => {
+          this.$emit('click')
+        }
       },
       props: {
         to: this.to
       },
-      directives: (this.to !== void 0 || this.active !== void 0 || this.mask !== void 0 ? [
+      directives: (this.to !== void 0 || this.active !== void 0 || this.mask ? [
         {
           name: 'mask',
-          value: {
-            disabled: this.mask !== void 0 && this.mask.disabled || this.mask === void 0 && (this.to !== void 0 || this.active !== void 0),
-            color: this.mask !== void 0 && this.mask.color,
-            stay: this.mask !== void 0 && this.mask.stay
-          }
+          value: this.mask ? {
+            disabled: this.mask.disabled,
+            color: this.mask.color,
+            stay: this.mask.stay
+          } : { disabled: true }
         },
-      ] : []).concat(this.ripple !== void 0 ? [
+      ] : []).concat(this.ripple ? [
         {
           name: 'ripple',
           value: {
-            disabled: this.ripple !== void 0 && this.ripple.disabled,
-            color: this.ripple !== void 0 && this.ripple.color,
-            center: this.ripple !== void 0 && this.ripple.center
+            disabled: this.ripple.disabled,
+            color: this.ripple.color,
+            center: this.ripple.center
           }
         }
       ] : [])

@@ -23,16 +23,16 @@
     .sw-basic-item__main
         position relative
         border-radius inherit
+        .space-left
+            padding-left $common-gutter
+        .space-right
+            padding-right $common-gutter
         &.disable
             color $grey !important
         .sw-basic-item__content
             position relative
             flex auto
             justify-content inherit
-            &.space-left
-                padding-left $common-gutter
-            &.space-right
-                padding-right $common-gutter
             .default-content
                 white-space nowrap
                 .sw-basic-item__label

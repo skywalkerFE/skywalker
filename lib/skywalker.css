@@ -524,6 +524,12 @@ body {
   position: relative;
   border-radius: inherit;
 }
+.sw-basic-item .sw-basic-item__main .space-left {
+  padding-left: 12px;
+}
+.sw-basic-item .sw-basic-item__main .space-right {
+  padding-right: 12px;
+}
 .sw-basic-item .sw-basic-item__main.disable {
   color: #c9c7c5 !important;
 }
@@ -531,12 +537,6 @@ body {
   position: relative;
   flex: auto;
   justify-content: inherit;
-}
-.sw-basic-item .sw-basic-item__main .sw-basic-item__content.space-left {
-  padding-left: 12px;
-}
-.sw-basic-item .sw-basic-item__main .sw-basic-item__content.space-right {
-  padding-right: 12px;
 }
 .sw-basic-item .sw-basic-item__main .sw-basic-item__content .default-content {
   white-space: nowrap;
@@ -791,13 +791,17 @@ body {
   position: relative;
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 .sw-layout.horizontal {
   transition: width 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
 }
 .sw-layout.vertival {
   transition: height 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  overflow: hidden;
+}
+.sw-layout.shadow .sw-layout__around {
+  box-shadow: 0 1px 8px rgba(0,0,0,0.2), 0 3px 4px rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12);
+  z-index: 1;
 }
 .sw-layout .sw-layout__main {
   position: relative;
@@ -1143,6 +1147,9 @@ body {
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+}
+.sw-slide__container.shadow {
+  box-shadow: inset 1px 1px 9px -7px rgba(0,0,0,0.7);
 }
 .sw-slide__container .sw-slide__content {
   position: relative;
