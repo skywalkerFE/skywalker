@@ -799,7 +799,7 @@ body {
   transition: height 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   overflow: hidden;
 }
-.sw-layout.shadow .sw-layout__around {
+.sw-layout.shadow > .sw-layout__around {
   box-shadow: 0 1px 8px rgba(0,0,0,0.2), 0 3px 4px rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12);
   z-index: 1;
 }
@@ -1145,7 +1145,6 @@ body {
 }
 .sw-slide__container {
   position: relative;
-  overflow: hidden;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
 }
 .sw-slide__container.shadow {

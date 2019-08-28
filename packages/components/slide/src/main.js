@@ -11,7 +11,8 @@ export default {
     shadow: Boolean
   },
   data: () => ({
-    innerCollapsed: true
+    innerCollapsed: true,
+    overflow: 'hidden'
   }),
   watch: {
     collapsed: {
@@ -21,12 +22,24 @@ export default {
       immediate: true
     }
   },
+  mounted(){
+    this.overflow = this.innerCollapsed ? 'hidden' : 'inherit'
+    this.$refs.slide.addEventListener('transitionstart', () => {
+      this.overflow = 'hidden'
+    })
+    this.$refs.slide.addEventListener('transitionend', () => {
+      this.overflow = this.innerCollapsed ? 'hidden' : 'inherit'
+    })
+  },
   render(h) {
     return h('div', {
       ref: 'slide',
       staticClass: 'sw-slide__container',
       class: {
         shadow: this.shadow
+      },
+      style:{
+        overflow: this.overflow
       }
     }, [
       h('div', {

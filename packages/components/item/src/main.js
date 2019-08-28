@@ -68,7 +68,7 @@ export default {
         }, [this.$scopedSlots.before()]) : void 0,
   
         this.$scopedSlots.default !== void 0 ? h('div', {
-          staticClass: 'sw-item__inner flex items-center items-end',
+          staticClass: 'sw-item__inner flex items-center',
           class: {
             hide: this.hideDefault,
             'no-wrap': !this.wrap,
