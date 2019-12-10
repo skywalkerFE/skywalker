@@ -257,7 +257,7 @@ export default {
           },
           scopedSlots: {
             before: () => [h('div', {
-              staticClass: 'flex items-center',
+              staticClass: 'flex no-wrap items-center',
               class: {
                 'space-right': this.hasBefore
               }
@@ -270,7 +270,7 @@ export default {
               })] : void 0)],
   
             default: () => [h('div', {
-              staticClass: 'sw-basic-item__content flex items-center',
+              staticClass: 'sw-basic-item__content flex no-wrap items-center',
               class: {
                 'space-right': this.hasContent
               }
@@ -289,7 +289,7 @@ export default {
             )],
   
             after: () => [h('div', {
-              staticClass: 'flex items-center'
+              staticClass: 'flex no-wrap items-center'
             }, this.$scopedSlots.after !== void 0 ? [this.$scopedSlots.after()]
               : this.hasSub ? [h('sw-icon', {
                 staticClass: 'sw-basic-item__expansion color-grey',

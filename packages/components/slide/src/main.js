@@ -4,15 +4,16 @@ export default {
   name: 'swSlide',
   mixins: [SlideObserver],
   props: {
-    collapsed: Boolean,
+    collapsed: {
+      required: false
+    },
     horizontal: Boolean,
     fit: Boolean,
     min: Number | String,
     shadow: Boolean
   },
   data: () => ({
-    innerCollapsed: true,
-    overflow: 'hidden'
+    innerCollapsed: true
   }),
   watch: {
     collapsed: {
@@ -22,15 +23,6 @@ export default {
       immediate: true
     }
   },
-  mounted(){
-    this.overflow = this.innerCollapsed ? 'hidden' : 'inherit'
-    this.$refs.slide.addEventListener('transitionstart', () => {
-      this.overflow = 'hidden'
-    })
-    this.$refs.slide.addEventListener('transitionend', () => {
-      this.overflow = this.innerCollapsed ? 'hidden' : 'inherit'
-    })
-  },
   render(h) {
     return h('div', {
       ref: 'slide',
@@ -38,8 +30,8 @@ export default {
       class: {
         shadow: this.shadow
       },
-      style:{
-        overflow: this.overflow
+      style: {
+        overflow: this.collapsed === void 0 ? 'inherit' : 'hidden'
       }
     }, [
       h('div', {

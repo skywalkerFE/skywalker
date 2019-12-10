@@ -4,10 +4,18 @@ export default {
   name: 'swLayout',
   components: { Slide },
   props: {
-    collapseTop: Boolean,
-    collapseLeft: Boolean,
-    collapseRight: Boolean,
-    collapseBottom: Boolean,
+    collapseTop: {
+      required: false
+    },
+    collapseLeft: {
+      required: false
+    },
+    collapseRight: {
+      required: false
+    },
+    collapseBottom: {
+      required: false
+    },
     fitTop: Boolean,
     fitLeft: Boolean,
     fitRight: Boolean,
